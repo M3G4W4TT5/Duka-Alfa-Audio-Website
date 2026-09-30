@@ -41,3 +41,9 @@ Hero videos and editorial timing; final image selection/crops and credits; found
 Legal review reference points: [Kosovo Law 06/L-082](https://gzk.rks-gov.net/ActDetail.aspx?ActID=18616&langid=2), [Information and Privacy Agency](https://aip.rks-gov.net/en/about-us/), and [GDPR](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679). Apply them to the final business/configuration before launch.
 
 Review URL: https://duka-alfa-audio.pages.dev. No final Sanity modelling or connection in this stage.
+
+## Footer credit revision
+
+The shared footer includes the user-requested white “Designed by Memory(One)” link to https://memoryone.eu/. Desktop places it to the right of the social links, below the divider and aligned with the Duka logo. At 900px and below it reflows into a right-aligned row. The supplied artwork is retained; the single compact link covers both text and logo and uses the shared visible keyboard focus style.
+
+Footer revision verification: formatting, `npm run check`, `npm run build` (26 pages) and `git diff --check` passed. Browser checks at 320, 768 and 1440px found no horizontal page overflow. Keyboard Tab reaches the complete credit with visible white focus; Enter navigates to memoryone.eu. All generated pages retain noindex and contact remains disabled.

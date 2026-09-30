@@ -15,3 +15,5 @@ Only the assets used in this review were copied. Original source folders were pr
 Photos and product source copies remain intact; Astro produces responsive WebP output. Logos use proportional sizing with `object-fit: contain`. No private archives, reference captures or unselected media are included. Photographer credits, image permissions and final partner relationship wording remain launch review items.
 
 Interface icons are from [Bootstrap Icons v1.13.1](https://github.com/twbs/icons/tree/v1.13.1), under the MIT licence retained at `public/icons/LICENSE.txt`.
+
+The user supplied and authorised the horizontal Memory(One) logo for the footer credit. `public/identity/memoryone-logo.webp` preserves the original canvas and artwork; CSS clips transparent margins and renders it white.
