@@ -17,7 +17,7 @@ Status: step 1 implementation and two-push pipeline verified. Final handoff push
 - `npm run check`: passed; Astro 0 errors, warnings or hints; Function and Studio TypeScript checks passed.
 - `npm run build`: passed; static `dist/index.html` generated.
 - `git diff --check`: passed. Complete tracked file list reviewed before push.
-- `npm audit --json --cache /tmp/duka-npm-cache`: 12 findings, 11 moderate / 1 high / 0 critical. High aggregate is `undici@7.29.0` under Sanity CLI module federation and Wrangler/Miniflare; advisories include WebSocket denial of service and BalancedPool TLS validation bypass. Moderate paths include those tools and `uuid@10.0.0` through Sanity CLI `typeid-js`. They are build/development/Studio tooling, not dependencies bundled in the static page or root contact Function. No broad upgrades or forced audit fix applied. Reassess before Studio/tooling use.
+- Original step 1 `npm audit --json --cache /tmp/duka-npm-cache`: 12 findings, 11 moderate / 1 high / 0 critical. These inherited findings were subsequently resolved in [step 1.1 dependency maintenance](step-1.1-dependencies.md), which records the dependency paths, compatibility checks and clean audit.
 - Initial renamed workspace lacked its matching lockfile link; corrected the link metadata and reran successful clean install. Dependency resolutions unchanged.
 
 ## Cloudflare setup
@@ -41,7 +41,7 @@ The final documentation commit is identified by `git log -1` and the matching Cl
 
 ## Remaining warnings and limits
 
-No provider blocker remains after owner GitHub authorization. Dependency audit findings above remain; versions are intentionally preserved. Review hostname is public, not access-controlled. No CMS, Studio hosting, mail delivery/inbox receipt, webhook, alert, DNS, domain migration or launch-design verification was attempted. Those are later stages, not step 1 acceptance checks.
+No provider blocker remains after owner GitHub authorization. Step 1.1 resolves the inherited dependency audit findings; see its linked verification record. Review hostname is public, not access-controlled. No CMS, Studio hosting, mail delivery/inbox receipt, webhook, alert, DNS, domain migration or launch-design verification was attempted. Those are later stages, not step 1 acceptance checks.
 
 ## Step 2 boundaries
 
