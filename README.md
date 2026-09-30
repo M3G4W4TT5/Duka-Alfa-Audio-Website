@@ -1,48 +1,17 @@
-# Astro + Sanity + Cloudflare Pages starter
+# Duka Alfa Audio Website
 
-A public template for building small, content-focused websites. It gives you a working local demo and a starting point for a site with editable content and a contact form.
+Independent public website repository generated from [astro-sanity-cloudflare-starter](https://github.com/M3G4W4TT5/astro-sanity-cloudflare-starter), revision `ea2952e9b2ca214f1dbef64986bb6fbd5573f377`.
 
-The demo is intentionally generic. Each site made from this template needs its own design, approved content, accounts, and launch decisions.
+This is a development preview using the neutral demonstration layout and account-free content. The Duka label identifies the review environment; design, copy and assets are not approved launch content.
 
-## What’s included
+## Local development
 
-- **Astro** for a fast, static website
-- **Sanity** for content editors, with content added during each build
-- **Cloudflare Pages** for hosting and a server-side contact endpoint
-- **Turnstile** for form verification and **Resend** as the default mail provider
-- **React support** when a design needs interactive components
+Use Node 24. Run `npm ci`, `npm run check`, `npm run build`, then `npm run dev` for local review. The separate `studio/` workspace and root `functions/` are retained. Both npm packages are private.
 
-You can run the demo without creating any accounts. The contact form starts disabled and sends no real mail during local development.
+Keep `PUBLIC_SANITY_PROJECT_ID` unset, `PUBLIC_CONTACT_FORM_READY=0` and `CONTACT_FORM_ENABLED=0`. Retain noindex. No Sanity, Turnstile or mail credentials are required for this stage.
 
-## Try it locally
+## Stage boundaries
 
-You’ll need Node 24 and npm.
+Step 1 establishes GitHub and a Git-integrated Cloudflare Pages review deployment. Later design work should preserve shared components and the starter architecture. Derive final Sanity fields after design; configure the existing project only after verifying access and published content. Mail, webhooks, custom domains, DNS and the future Music Store are later scope.
 
-```bash
-npm ci
-npm run dev
-```
-
-Open [http://localhost:4321](http://localhost:4321). To check the project and make a production build, run:
-
-```bash
-npm run check
-npm run build
-```
-
-## Make it your own
-
-1. Create a new repository using this template.
-2. Replace the demo design and text with content approved for your site.
-3. Set up your own Sanity project and connect it to the build.
-4. Configure a Cloudflare Pages review site before connecting your domain.
-5. Set up and test the contact form before making it visible to visitors.
-
-The demo page is marked `noindex`. Remove that setting only when the real site is ready to be found by search engines. This template does not include client assets or ready-to-publish legal pages. The [privacy policy](docs/templates/privacy-policy.md) and [cookie policy](docs/templates/cookie-policy.md) are working templates that require a client-specific review.
-
-## Guides
-
-- [Quickstart and configuration](docs/quickstart.md) — local setup, Sanity, Pages, webhooks, and contact form settings
-- [New site checklist](docs/new-site-checklist.md) — decisions and checks for a client project
-- [Operations handoff](docs/operations-handoff.md) — what to record before handing over a live site
-- [Starter decisions](docs/decisions.md) — why the template uses this setup
+Private handoff packages, source assets, evidence and operational addresses stay outside this public repository. Only individually reviewed public assets may be added later. See [step 1 handoff](docs/step-1-handoff.md) for implementation and verification details. Starter guidance in `docs/` is reference material, not a record of completed client setup.
