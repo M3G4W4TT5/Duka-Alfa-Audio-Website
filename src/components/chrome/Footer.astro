@@ -1,0 +1,48 @@
+---
+import { navigation } from "../../data/navigation";
+import { site } from "../../lib/content";
+import "./footer.css";
+---
+
+<footer class="site-footer wrap">
+  <div class="footer-top">
+    <a href="/" aria-label="Duka Alfa Audio home"
+      ><img
+        src="/identity/full-logo.svg"
+        alt="Duka Alfa Audio — professional sound and lighting"
+        width="240"
+        height="68"
+        loading="lazy"
+      /></a
+    >
+    <nav aria-label="Footer navigation">
+      {navigation.slice(1).map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <nav aria-label="Social media">
+      {
+        site.social.map((item) => (
+          <a href={item.href} target="_blank" rel="noopener noreferrer">
+            {item.label}
+            <span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <small>© {new Date().getFullYear()} Duka Alfa Audio</small><div>
+      <a href="/privacy/">Privacy Notice</a><a href="/legal/"
+        >Legal Information</a
+      >
+    </div><small>Design review · English content</small>
+  </div>
+</footer>
+<a class="contact-fab" href="/contact/" aria-label="Get in touch"
+  ><img
+    class="icon"
+    src="/icons/envelope.svg"
+    width="22"
+    height="22"
+    alt=""
+  /></a
+>

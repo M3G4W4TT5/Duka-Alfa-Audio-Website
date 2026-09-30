@@ -1,0 +1,23 @@
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+}
+.about-intro h2 {
+  max-width: 340px;
+}
+.about-intro .prose {
+  color: var(--color-muted);
+}
+.about-intro .button {
+  margin-top: 0.5rem;
+}
+@media (max-width: 900px) {
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .about-intro h2 {
+    max-width: none;
+  }
+}

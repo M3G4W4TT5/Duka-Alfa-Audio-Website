@@ -1,0 +1,98 @@
+---
+import { equipmentGroups } from "../../lib/content";
+import Photo from "../media/Photo.astro";
+import Button from "../ui/Button.astro";
+import "./equipment.css";
+interface Props {
+  heading?: boolean;
+}
+const { heading = true } = Astro.props;
+---
+
+<section
+  class="equipment section wrap"
+  id="equipment"
+  aria-labelledby="equipment-title"
+>
+  {
+    heading && (
+      <div class="section-heading">
+        <>
+          <h2 id="equipment-title">Equipment</h2>
+          <Button href="/equipment/" label="Explore Equipment" />
+        </>
+      </div>
+    )
+  }
+  {
+    !heading && (
+      <h2 id="equipment-title" class="sr-only">
+        Equipment categories
+      </h2>
+    )
+  }
+  <div class="equipment-intro">
+    <img
+      src="/partners/tt-audio.png"
+      alt="TT+ Audio"
+      width="180"
+      height="100"
+      loading="lazy"
+    /><div>
+      <h3>The sound behind the experience.</h3><p class="muted">
+        TT+ Audio is our main live gear brand. Explore sound, stage and
+        lighting, then discuss the right setup for your project.
+      </p>
+    </div>
+  </div>
+  <div class="equipment-list">
+    {
+      equipmentGroups.map((group) => (
+        <details class="equipment-group" open={group.id === "sound"}>
+          <summary>
+            <>
+              <span>{group.title}</span>
+              <span class="equipment-summary">{group.summary}</span>
+              <img
+                class="icon equipment-chevron"
+                src="/icons/chevron-right.svg"
+                width="20"
+                height="20"
+                alt=""
+              />
+            </>
+          </summary>
+          <div class="equipment-grid">
+            {group.items.map((item) => (
+              <article
+                class:list={[
+                  "equipment-item",
+                  {
+                    "has-photo": Boolean(item.photo),
+                    "equipment-product": group.id === "sound",
+                  },
+                ]}
+              >
+                {item.photo && (
+                  <div class="equipment-photo">
+                    <Photo
+                      photo={item.photo}
+                      sizes="(min-width: 900px) 25vw, (min-width: 600px) 50vw, 100vw"
+                    />
+                  </div>
+                )}
+                <div class="equipment-item-copy">
+                  <h3>{item.name}</h3>
+                  <p>{item.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </details>
+      ))
+    }
+  </div>
+  <p class="equipment-note muted">
+    Discuss configurations and availability with us for your project.
+  </p>
+</section>

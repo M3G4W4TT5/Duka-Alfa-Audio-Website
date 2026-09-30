@@ -1,0 +1,18 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageIntro from "../../components/ui/PageIntro.astro";
+import StoryCard from "../../components/ui/StoryCard.astro";
+import { stories } from "../../lib/content";
+---
+
+<SiteLayout title="Project Stories"
+  ><PageIntro
+    title="Stages. Spaces. Stories."
+    eyebrow="Selected Work"
+    intro="Explore a selection of festival and club settings from the supplied photo collection."
+  /><section class="section wrap">
+    <div class="story-grid">
+      {stories.map((story) => <StoryCard story={story} />)}
+    </div>
+  </section></SiteLayout
+>

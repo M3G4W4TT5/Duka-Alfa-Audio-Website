@@ -1,0 +1,70 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageIntro from "../../components/ui/PageIntro.astro";
+import Button from "../../components/ui/Button.astro";
+import ServiceCard from "../../components/ui/ServiceCard.astro";
+import { services } from "../../lib/content";
+import type { Service } from "../../data/types";
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+interface Props {
+  service: Service;
+}
+const { service } = Astro.props;
+const related = services
+  .filter(
+    (item) =>
+      item.slug !== service.slug &&
+      (service.slug === "installations"
+        ? item.parent === "installations"
+        : !item.parent),
+  )
+  .slice(0, 3);
+---
+
+<SiteLayout title={service.title} description={service.summary}>
+  <PageIntro
+    title={service.title}
+    eyebrow="Our Services"
+    intro={service.summary}
+    photo={service.slug !== "sales-distribution" ? service.photo : undefined}
+    ><Button href="/contact/" label="Discuss Your Project" /></PageIntro
+  >
+  {
+    service.parent && (
+      <section class="section wrap">
+        <>
+          <h2>Designed around your space.</h2>
+          <p class="prose muted">
+            Part of our{" "}
+            <a href="/services/installations/">installation services</a>. Tell
+            us how you listen, the rooms you use and what you would like your
+            system to do.
+          </p>
+        </>
+      </section>
+    )
+  }
+  {
+    related.length > 0 && (
+      <section class="section wrap">
+        <>
+          <h2>
+            {service.slug === "installations"
+              ? "For your home"
+              : "Explore Our Services"}
+          </h2>
+          <div class="services-grid">
+            {related.map((item) => (
+              <ServiceCard service={item} />
+            ))}
+          </div>
+        </>
+      </section>
+    )
+  }
+</SiteLayout>

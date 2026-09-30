@@ -1,0 +1,56 @@
+---
+import "./contact.css";
+---
+
+<section
+  class="contact section wrap"
+  id="contact"
+  aria-labelledby="contact-title"
+>
+  <div class="contact-intro">
+    <p class="eyebrow">Get in Touch</p><h2 id="contact-title">
+      Let’s talk about<br />your next project.
+    </h2><p class="muted">
+      Tell us about your event, your space or the sound you’re looking for.
+    </p>
+  </div>
+  <form action="/api/contact" method="post" aria-describedby="form-status">
+    <div class="contact-fields">
+      <label
+        >Name<input
+          name="name"
+          autocomplete="name"
+          required
+          minlength="2"
+          maxlength="100"
+          disabled
+        /></label
+      ><label
+        >Email<input
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          maxlength="200"
+          disabled
+        /></label
+      >
+    </div>
+    <label
+      >Message<textarea
+        name="message"
+        rows="5"
+        required
+        minlength="10"
+        maxlength="5000"
+        disabled></textarea></label
+    >
+    <p class="contact-privacy">
+      Read our <a href="/privacy/">Privacy Notice</a>.
+    </p>
+    <button class="button" type="submit" disabled>Send Message</button>
+    <p id="form-status" class="contact-status" role="status">
+      Design review: enquiries are not enabled yet.
+    </p>
+  </form>
+</section>

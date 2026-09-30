@@ -1,0 +1,20 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import CaseArticle from "../../components/media/CaseArticle.astro";
+import { stories } from "../../lib/content";
+import type { Story } from "../../data/types";
+export function getStaticPaths() {
+  return stories.map((story) => ({
+    params: { slug: story.slug },
+    props: { story },
+  }));
+}
+interface Props {
+  story: Story;
+}
+const { story } = Astro.props;
+---
+
+<SiteLayout title={story.title} description={story.introduction}
+  ><CaseArticle story={story} /></SiteLayout
+>

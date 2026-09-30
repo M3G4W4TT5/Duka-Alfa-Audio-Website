@@ -1,0 +1,22 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  arrow?: boolean;
+}
+const { href, label, arrow = false } = Astro.props;
+---
+
+<a class="button" href={href}
+  >{label}{
+    arrow && (
+      <img
+        class="icon"
+        src="/icons/arrow-up-right.svg"
+        width="20"
+        height="20"
+        alt=""
+      />
+    )
+  }</a
+>

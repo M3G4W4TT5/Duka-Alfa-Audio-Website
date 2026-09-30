@@ -1,0 +1,38 @@
+---
+import type { Service } from "../../data/types";
+import Photo from "../media/Photo.astro";
+import "./service-card.css";
+interface Props {
+  service: Service;
+}
+const { service } = Astro.props;
+---
+
+<article
+  class:list={[
+    "service-card",
+    { "product-card": service.slug === "sales-distribution" },
+  ]}
+>
+  <a href={`/services/${service.slug}/`} class="service-card-link">
+    {
+      service.photo && (
+        <div class="service-card-photo">
+          <Photo
+            photo={service.photo}
+            sizes="(min-width: 1100px) 25vw, (min-width: 600px) 50vw, 100vw"
+          />
+        </div>
+      )
+    }
+    <div class="service-card-copy">
+      <h3>{service.title}</h3><p>{service.summary}</p><span class="card-action"
+        >Learn More<img
+          class="icon"
+          src="/icons/arrow-up-right.svg"
+          alt=""
+        /></span
+      >
+    </div>
+  </a>
+</article>

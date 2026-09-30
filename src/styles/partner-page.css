@@ -1,0 +1,11 @@
+.partner-page-logo {
+  width: 300px;
+  height: 150px;
+  object-fit: contain;
+  object-position: left center;
+  margin-top: 2rem;
+}
+.review-note {
+  font-size: 0.9rem;
+  max-width: 650px;
+}

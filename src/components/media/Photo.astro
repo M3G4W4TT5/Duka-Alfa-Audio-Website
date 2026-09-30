@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import type { Photo } from "../../data/types";
+interface Props {
+  photo: Photo;
+  sizes?: string;
+  eager?: boolean;
+  class?: string;
+}
+const {
+  photo,
+  sizes = "100vw",
+  eager = false,
+  class: className = "photo",
+} = Astro.props;
+---
+
+<Image
+  src={photo.image}
+  alt={photo.alt}
+  widths={[480, 960, 1440, 1920].filter((w) => w <= photo.image.width)}
+  sizes={sizes}
+  format="webp"
+  quality={82}
+  loading={eager ? "eager" : "lazy"}
+  class={className}
+  style={photo.position ? `object-position: ${photo.position}` : undefined}
+/>

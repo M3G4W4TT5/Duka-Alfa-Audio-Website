@@ -1,0 +1,26 @@
+---
+import type { Photo as PhotoType } from "../../data/types";
+import Photo from "../media/Photo.astro";
+import "./page-intro.css";
+interface Props {
+  title: string;
+  eyebrow?: string;
+  intro?: string;
+  photo?: PhotoType;
+}
+const { title, eyebrow, intro, photo } = Astro.props;
+---
+
+<section class="page-intro wrap">
+  {eyebrow && <p class="eyebrow muted">{eyebrow}</p>}
+  <h1>{title}</h1>
+  {intro && <p class="prose muted">{intro}</p>}
+  <slot />
+</section>
+{
+  photo && (
+    <div class="page-banner">
+      <Photo photo={photo} eager />
+    </div>
+  )
+}

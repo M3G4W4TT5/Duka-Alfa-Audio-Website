@@ -1,0 +1,65 @@
+---
+import type { Story } from "../../data/types";
+import PageIntro from "../ui/PageIntro.astro";
+import Photo from "./Photo.astro";
+import Button from "../ui/Button.astro";
+import "./case-article.css";
+interface Props {
+  story: Story;
+}
+const { story } = Astro.props;
+---
+
+<article>
+  <PageIntro
+    title={story.title}
+    eyebrow="Project Stories"
+    intro={story.introduction}
+    photo={story.photo}
+  >
+    {
+      story.tags.length > 0 && (
+        <ul class="case-tags">
+          {story.tags.slice(0, 4).map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      )
+    }
+  </PageIntro>
+  {
+    story.contribution && (
+      <section class="section wrap">
+        <>
+          <h2>Our Contribution</h2>
+          <p class="prose">{story.contribution}</p>
+        </>
+      </section>
+    )
+  }
+  {
+    story.gallery && story.gallery.length > 0 && (
+      <section class="section wrap" aria-labelledby="gallery-title">
+        <>
+          <h2 id="gallery-title" class="sr-only">
+            {story.title} gallery
+          </h2>
+          <div class="case-gallery">
+            {story.gallery.map((photo) => (
+              <figure>
+                <Photo photo={photo} />
+              </figure>
+            ))}
+          </div>
+        </>
+      </section>
+    )
+  }
+  <div class="case-ending section wrap">
+    <div>
+      <h2>Your next project.</h2><p class="muted">
+        Let’s discuss the sound, lighting and setup.
+      </p><Button href="/contact/" label="Get in Touch" />
+    </div><Button href="/stories/" label="All Stories" />
+  </div>
+</article>

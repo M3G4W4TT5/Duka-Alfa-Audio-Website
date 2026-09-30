@@ -1,0 +1,46 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageIntro from "../../components/ui/PageIntro.astro";
+import Button from "../../components/ui/Button.astro";
+import Equipment from "../../components/home/Equipment.astro";
+import { partners } from "../../lib/content";
+import type { Partner } from "../../data/types";
+import "../../styles/partner-page.css";
+export function getStaticPaths() {
+  return partners.map((partner) => ({
+    params: { slug: partner.slug },
+    props: { partner },
+  }));
+}
+interface Props {
+  partner: Partner;
+}
+const { partner } = Astro.props;
+---
+
+<SiteLayout title={partner.name}
+  ><PageIntro title={partner.name} eyebrow="Our Partners"
+    ><img
+      class="partner-page-logo"
+      src={partner.logo}
+      alt={partner.name}
+      width="300"
+      height="150"
+    /></PageIntro
+  ><section class="section wrap">
+    <h2>{partner.name} & Duka</h2><p class="prose muted">
+      {
+        partner.description
+          ? partner.description
+          : `Talk to us about ${partner.name} and the right equipment for your project.`
+      }
+    </p>{
+      partner.slug !== "tt-audio" && (
+        <p class="review-note muted">
+          Detailed brand information and our work together will be added in the
+          next content pass.
+        </p>
+      )
+    }<Button href="/contact/" label="Get in Touch" />
+  </section>{partner.slug === "tt-audio" && <Equipment />}</SiteLayout
+>

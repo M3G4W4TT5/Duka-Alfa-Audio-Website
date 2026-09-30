@@ -1,0 +1,35 @@
+---
+import { partners } from "../../lib/content";
+import "./partners.css";
+interface Props {
+  heading?: boolean;
+}
+const { heading = true } = Astro.props;
+---
+
+<section
+  class="partners section wrap"
+  id="partners"
+  aria-labelledby="partners-title"
+>
+  <h2 id="partners-title" class:list={{ "sr-only": !heading }}>Our Partners</h2>
+  <div class="partners-grid">
+    {
+      partners.map((partner) => (
+        <a
+          class="partner-tile"
+          href={`/partners/${partner.slug}/`}
+          aria-label={`Discover ${partner.name}`}
+        >
+          <img
+            src={partner.logo}
+            alt={partner.name}
+            width="240"
+            height="140"
+            loading="lazy"
+          />
+        </a>
+      ))
+    }
+  </div>
+</section>

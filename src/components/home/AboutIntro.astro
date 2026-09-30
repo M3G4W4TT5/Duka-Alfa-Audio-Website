@@ -1,0 +1,19 @@
+---
+import { site } from "../../lib/content";
+import Button from "../ui/Button.astro";
+import "./about.css";
+---
+
+<section
+  class="about-intro section wrap"
+  id="about"
+  aria-labelledby="about-title"
+>
+  <h2 id="about-title">About DUKA ALFA AUDIO</h2>
+  <div class="prose">
+    {site.about.map((paragraph) => <p>{paragraph}</p>)}<Button
+      href="/about-us/discover-duka/"
+      label="About Us"
+    />
+  </div>
+</section>

@@ -1,0 +1,35 @@
+.case-tags {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+  color: var(--color-muted);
+}
+.case-tags li {
+  border: 1px solid var(--color-line);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+}
+.case-gallery {
+  display: grid;
+  gap: 2rem;
+}
+.case-gallery figure {
+  margin: 0;
+}
+.case-gallery img {
+  height: auto;
+}
+.case-ending {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 2rem;
+}
+@media (max-width: 600px) {
+  .case-ending {
+    flex-direction: column;
+    align-items: start;
+  }
+}

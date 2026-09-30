@@ -1,0 +1,42 @@
+---
+import Header from "../components/chrome/Header";
+import Footer from "../components/chrome/Footer.astro";
+import { services } from "../lib/content";
+import "../styles/global.css";
+interface Props {
+  title?: string;
+  description?: string;
+  home?: boolean;
+}
+const {
+  title = "Duka Alfa Audio",
+  description = "Professional sound and lighting. Event production, installations, equipment sales, rental and bespoke home audio.",
+  home = false,
+} = Astro.props;
+const menuServices = services
+  .filter((service) => !service.parent)
+  .flatMap((service) => [
+    service,
+    ...services.filter((child) => child.parent === service.slug),
+  ])
+  .map(({ slug, title, parent }) => ({ slug, title, parent }));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#080808" />
+    <link rel="icon" type="image/svg+xml" href="/identity/mark.svg" />
+    <title>{title} — Duka Alfa Audio design review</title>
+  </head>
+  <body>
+    <a href="#main" class="skip">Skip to content</a>
+    <Header services={menuServices} home={home} client:load />
+    <main id="main" tabindex="-1"><slot /></main>
+    <Footer />
+  </body>
+</html>
