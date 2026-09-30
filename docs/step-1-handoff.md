@@ -1,6 +1,6 @@
 # Step 1 — repository and review deployment
 
-Status: local foundation verified; hosted Git integration and end-to-end verification in progress. Updated 30 September 2026.
+Status: step 1 implementation and two-push pipeline verified. Final handoff push must match the current successful deployment before reporting completion. Updated 30 September 2026.
 
 ## Repository and source
 
@@ -24,9 +24,24 @@ Status: local foundation verified; hosted Git integration and end-to-end verific
 
 Target account: Duka Alfa Audio, `bd35e06f4a3684191be65893ee68230d`, confirmed in dashboard. Dashboard application list initially showed no projects. Connector still exposes only a different account; it was not used for resource creation.
 
-Required Git-integrated Pages configuration: repository above, production branch `main`, repository root, `npm run build`, `dist`, Node 24. Non-secret settings: `NODE_VERSION=24`, `SITE_URL` equal to assigned review origin, `PUBLIC_CONTACT_FORM_READY=0`, `CONTACT_FORM_ENABLED=0`. Leave `PUBLIC_SANITY_PROJECT_ID` unset. No mail/Turnstile/Sanity settings, custom domains or hooks.
+Created project: `duka-alfa-audio`. Review origin: https://duka-alfa-audio.pages.dev. Git-integrated Pages configuration: repository above, production branch `main`, repository root, `npm run build`, `dist`, Node 24. Non-secret settings: `NODE_VERSION=24`, `SITE_URL` equal to assigned review origin, `PUBLIC_CONTACT_FORM_READY=0`, `CONTACT_FORM_ENABLED=0`. Leave `PUBLIC_SANITY_PROJECT_ID` unset. No mail/Turnstile/Sanity settings, custom domains or hooks.
 
-Actual project, hostname, hosted commit/log and two-push verification will be recorded after setup. GitHub owner authentication/repository authorization is currently required.
+GitHub owner completed authentication and repository authorization. Dashboard settings confirm automatic deployments enabled, build system Version 3, repository-root build, no deploy hooks, no bindings and only the four non-secret variables above. The initial form applied these values to production and preview.
+
+## Hosted verification
+
+- First foundation commit: `27c108068a34a2b02069883c4d02d3b712cc025f`.
+- Successful first deployment: `c71b3100-b900-4b89-887f-8027e49646a4`, https://c71b3100.duka-alfa-audio.pages.dev.
+- First hosted log: selected commit above; `nodejs@24.13.1` installed; `npm clean-install --progress=false`; `npm run build`; static output `/opt/buildhome/repo/dist/`; Functions found at `/functions`, Worker compiled, assets published and site deployed successfully. Cloudflare's own Functions packaging used Wrangler 3.114.17, separate from the repository's local Wrangler dependency.
+- Review origin GET returned HTTP 200. Browser inspection showed Duka development-preview identification, neutral demo layout/content and disabled Name/Email/Message/Send controls. HTML contained `noindex, nofollow` and no Turnstile script.
+- Synthetic valid multipart POST to `/api/contact` with same-origin header returned HTTP 503, `{"ok":false,"error":"not_configured"}`. No mail credentials/Turnstile secrets were configured; server gate stops before provider creation/sending. This verifies disabled delivery, not an inbox test.
+- Second small commit `77b330813967e955b647ee05d7f8df81d20bdae1` adds only the visible footer marker “Git-connected review preview.” Local check/build passed again. Its Git push automatically created deployment `db8b89a3-71c8-4280-8a41-2be2affd3ffe`; succeeded with Node 24.13.1. The marker was absent in the first hosted HTML and present after the second deployment at the same review origin (HTTP 200 and browser-rendered footer), proving automatic Git-to-site updates.
+
+The final documentation commit is identified by `git log -1` and the matching Cloudflare deployment, rather than embedding a self-referential commit SHA in this file.
+
+## Remaining warnings and limits
+
+No provider blocker remains after owner GitHub authorization. Dependency audit findings above remain; versions are intentionally preserved. Review hostname is public, not access-controlled. No CMS, Studio hosting, mail delivery/inbox receipt, webhook, alert, DNS, domain migration or launch-design verification was attempted. Those are later stages, not step 1 acceptance checks.
 
 ## Step 2 boundaries
 
