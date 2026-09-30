@@ -25,11 +25,14 @@ Node 24, dependency fixes, package files/lockfile, Studio and Functions retained
 - Browser review at 320, 390, 768 and 1440 pixels; no horizontal page overflow. Narrow header button CSS corrected. Service cards reflow from four to two to one column; menu scrolls at narrow sizes.
 - Menu open/close, Services disclosure, Escape/focus restoration, Shift-Tab wrapping, background inertness, visible focus, directional header, equipment panels, story dots and mouse drag checked.
 - All 14 hero slides rendered and wrapped correctly with three images mounted at a time. White text contrast is 20.03:1 on the background and at least 4.74:1 over the brightest possible shaded image; muted text is 9.72:1 on cards.
+- User's subsequent header correction verified: stays visible inside the hero, fully retracts after it (header bottom reaches viewport top), returns on an 18px upward scroll and hides on the next downward scroll. Mouse focus no longer holds it visible; keyboard focus remains visible.
 - Reduced-motion emulation: hero pause control disabled, zero transition duration, static rotation; mobile story navigation still works.
 - Temporary long story title, tripled service summary and absent story tags/gallery reviewed at 320px; fixtures restored before final build. Existing optional-image/description omissions also render.
 - Native touch swipe needs a physical-device check: the review browser cannot synthesize touch input. The carousel uses native horizontal scrolling and CSS snapping for touch. No claim of full device or screen-reader certification.
 
 Desktop/mobile viewport and full-page screenshots are retained outside Git in the project's `Website Review/2026-09-30` folder and shown in the review task. Git/Pages delivery evidence is recorded in that task after push; the delivered revision is the commit containing this handoff (`git log -1`).
+
+Initial design commit `08767ddfeb913502ef01afa56deb564a6650fc8c` deployed successfully as `fd2a834c-d2a3-4baa-94e5-85938569e0c2`: build log confirmed 26 pages and published assets. The final header correction is a subsequent commit, with its matching deployment verified in the delivery task.
 
 ## Remaining decisions
 

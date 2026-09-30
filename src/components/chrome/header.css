@@ -6,7 +6,7 @@
     transform var(--motion-fade),
     background var(--motion-fade);
 }
-.site-header.is-hidden:not(:focus-within) {
+.site-header.is-hidden:not(:has(:focus-visible)) {
   transform: translateY(-100%);
 }
 .site-header.is-solid {

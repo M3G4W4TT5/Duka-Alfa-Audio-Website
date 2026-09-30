@@ -19,9 +19,14 @@ export default function Header({ services, home = false }: Props) {
     let previous = window.scrollY;
     const onScroll = () => {
       const current = Math.max(0, window.scrollY);
+      const heroEnd =
+        document.querySelector<HTMLElement>(".hero")?.offsetHeight ?? 0;
       setScrolled(!home || current > 60);
-      if (Math.abs(current - previous) > 5) {
-        setHidden(current > previous && current > 120);
+      if (home && current < heroEnd) {
+        setHidden(false);
+        previous = current;
+      } else if (Math.abs(current - previous) > 2) {
+        setHidden(current > previous);
         previous = current;
       }
     };

@@ -31,3 +31,5 @@ The user selected the Selection photo folder for use and recalled the supplied p
 The user subsequently confirmed calm, medium-weight headings with spacious text, and equipment order: Sound (TT+ Audio) → Rigging → Stage → Lights → LED Screens. Selected product panels may coexist with category descriptions where model details are incomplete.
 
 First-pass review revision: include all 14 usable photographs from the selected Hero folder. The user explicitly deferred the fifteenth (Peja Outdoor Festival) because of its added logo. Three-second default timing remains.
+
+Header revision: remain visible through the hero; scrolling downward beyond its end retracts the entire header. A small upward scroll reveals it; the next downward scroll hides it. Mouse focus must not keep the header visible. Visible keyboard focus keeps its control accessible.
