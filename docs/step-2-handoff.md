@@ -44,6 +44,6 @@ Review URL: https://duka-alfa-audio.pages.dev. No final Sanity modelling or conn
 
 ## Footer credit revision
 
-The shared footer includes the user-requested white “Designed by Memory(One)” link to https://memoryone.eu/. Desktop places it to the right of the social links, below the divider and aligned with the Duka logo. At 900px and below it reflows into a right-aligned row. The supplied artwork is retained; the single compact link covers both text and logo and uses the shared visible keyboard focus style.
+The shared footer includes the user-requested white “Designed by Memory(One)” link to https://memoryone.eu/. Desktop places it to the right of the social links, below the divider and aligned with the Duka logo. At 900px and below it reflows into its own row. At mobile widths (700px and below), all footer content is centred: the Duka logo, navigation, social links, designer credit and bottom row, as requested in the subsequent review. The supplied artwork is retained; the single compact link covers both text and logo and uses the shared visible keyboard focus style.
 
 Footer revision verification: formatting, `npm run check`, `npm run build` (26 pages) and `git diff --check` passed. Browser checks at 320, 768 and 1440px found no horizontal page overflow. Keyboard Tab reaches the complete credit with visible white focus; Enter navigates to memoryone.eu. All generated pages retain noindex and contact remains disabled.
