@@ -36,7 +36,7 @@ Use only [Lucide React](https://lucide.dev/guide/react) (`lucide-react`) for int
 | Phone numbers where an icon is useful | `Phone` |
 | Previous/next and equipment disclosures | `ChevronLeft`, `ChevronRight` |
 | Services disclosure | `Plus`, `Minus` |
-| Slideshow playback | `Play`, `Pause` |
+| Homepage scroll cue | `ChevronDown` |
 
 Use consistent outline strokes and inherit text colour through `currentColor`, including hover states. The standard size is 20 CSS pixels; adjust only where the control needs it. Do not add an icon to every link or contact detail. Supplied brand logos, wordmarks and the favicon remain identity assets. Carousel dots remain state indicators.
 
@@ -58,25 +58,27 @@ Use a minimal footer with the supplied brand identity, navigation, social links,
 
 ### Homepage
 
-Order sections as hero → company introduction → four service cards → selected stories → equipment → partners → contact → footer. Preserve supplied copy. Retain all five service routes; Bespoke Home Audio is included within Installations in the homepage and navigation.
+Order sections as hero → company introduction → four service cards → selected stories → equipment → partners → contact → footer. Use About us for the company introduction heading and READ MORE for its button. Omit the service and selected-stories subtitles. Retain all five service routes; Bespoke Home Audio is included within Installations in the homepage and navigation.
 
 ### Hero
 
-Use a full-screen image carousel with a stationary central heading and message. Advance every three seconds by default, with optional per-slide timing. Provide previous/next and play/pause controls. Pause during control interaction and honour reduced motion. Use only selected hero photographs; video behaviour requires a separate agreed specification.
+Use a full-screen image carousel with a stationary central heading and message. Advance every three seconds by default, with optional per-slide timing. Omit previous/next controls, playback controls and the image counter. Preserve keyboard-focus and document-visibility pauses and honour reduced motion. Use a centred SCROLL cue with an animated Lucide down icon; it disappears after the first downward scroll and stays hidden until a new page load. Use only selected hero photographs; video behaviour requires a separate agreed specification.
 
 ### Stories
 
-Use a full-width carousel supporting drag, swipe and keyboard navigation. Each slide has an image, title, up to four factual tags and Learn More. Place clickable pagination dots at the bottom centre, with the active dot filled white, plus previous/next controls. More Stories links to the overview.
+Use a full-width carousel supporting drag, swipe and keyboard navigation. Each slide has an image, title, up to four factual tags and Learn More. Place clickable pagination dots at the bottom centre, with the active dot filled white, without previous/next arrow buttons. More Stories links to the overview.
 
 Use a shared case-article template for context, confirmed contribution, gallery, relevant facts and enquiry. Omit unsupported or absent content rather than filling it with invented details.
 
 ### Equipment and partners
 
-Highlight TT+ Audio. Order expandable equipment groups as Sound → Rigging → Stage → Lights → LED Screens. Product panels and category descriptions may coexist. Avoid claims about live stock, availability or capacity without verified content.
+Highlight TT+ Audio. Order expandable equipment groups as Sound → Rigging → Stage → Lights → LED Screens. Use equipment cards inside dropdowns. Sound cards retain product thumbnails; Stage and Lights use text cards without large event photos. Category summaries show quantity/type placeholders pending client inventory. Omit the configuration/availability note.
 
 Display supplied partner logos in a spaced grid linking to individual partner pages.
 
 ### Supporting pages
+
+Contact sections omit the Get in Touch eyebrow. On desktop align the introductory heading with the top of the Name/Email input borders; on mobile retain stacked reflow.
 
 The company page omits its introductory eyebrow and uses smaller gaps around its body sections.
 

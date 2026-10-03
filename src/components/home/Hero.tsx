@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { BrowserPhoto } from "../../data/types";
 import "./hero.css";
@@ -11,11 +11,21 @@ interface Props {
 }
 export default function Hero({ slides, title, message, intervalMs }: Props) {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [reduced, setReduced] = useState(true);
   const [visible, setVisible] = useState(true);
+  const [scrollDismissed, setScrollDismissed] = useState(false);
+  useEffect(() => {
+    const dismiss = () => {
+      if (window.scrollY > 0) {
+        setScrollDismissed(true);
+        window.removeEventListener("scroll", dismiss);
+      }
+    };
+    dismiss();
+    window.addEventListener("scroll", dismiss, { passive: true });
+    return () => window.removeEventListener("scroll", dismiss);
+  }, []);
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const motion = () => setReduced(preference.matches);
@@ -32,8 +42,6 @@ export default function Hero({ slides, title, message, intervalMs }: Props) {
   useEffect(() => {
     if (
       slides.length < 2 ||
-      paused ||
-      hovered ||
       focused ||
       reduced ||
       !visible
@@ -44,10 +52,8 @@ export default function Hero({ slides, title, message, intervalMs }: Props) {
       slides[active].durationMs ?? intervalMs,
     );
     return () => window.clearTimeout(timer);
-  }, [active, slides, intervalMs, paused, hovered, focused, reduced, visible]);
+  }, [active, slides, intervalMs, focused, reduced, visible]);
   if (!slides.length) return null;
-  const move = (direction: number) =>
-    setActive((active + direction + slides.length) % slides.length);
   return (
     <section
       className="hero"
@@ -87,41 +93,14 @@ export default function Hero({ slides, title, message, intervalMs }: Props) {
         <h1>{title}</h1>
         <p>{message}</p>
       </div>
-      {slides.length > 1 && (
-        <div
-          className="hero-controls"
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-        >
-          <button aria-label="Previous hero image" onClick={() => move(-1)}>
-            <ChevronLeft className="icon" size={20} aria-hidden="true" />
-          </button>
-          <span aria-hidden="true">
-            {String(active + 1).padStart(2, "0")} /{" "}
-            {String(slides.length).padStart(2, "0")}
+      {!scrollDismissed && (
+        <a className="hero-scroll" href="#about">
+          <span className="hero-scroll-box">
+            <ChevronDown size={32} aria-hidden="true" />
           </span>
-          <button aria-label="Next hero image" onClick={() => move(1)}>
-            <ChevronRight className="icon" size={20} aria-hidden="true" />
-          </button>
-          <button
-            aria-label={
-              paused || reduced ? "Play slideshow" : "Pause slideshow"
-            }
-            aria-pressed={paused || reduced}
-            disabled={reduced}
-            onClick={() => setPaused(!paused)}
-          >
-            {paused || reduced ? (
-              <Play className="icon" size={20} aria-hidden="true" />
-            ) : (
-              <Pause className="icon" size={20} aria-hidden="true" />
-            )}
-          </button>
-        </div>
+          <span>Scroll</span>
+        </a>
       )}
-      <a className="hero-scroll" href="#about">
-        Discover Duka
-      </a>
     </section>
   );
 }

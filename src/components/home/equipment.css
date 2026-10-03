@@ -75,10 +75,6 @@
   font-size: 0.9rem;
   margin-bottom: 0;
 }
-.equipment-note {
-  font-size: 0.85rem;
-  margin: 1.5rem 0 0;
-}
 @media (max-width: 600px) {
   .equipment-intro {
     grid-template-columns: 1fr;

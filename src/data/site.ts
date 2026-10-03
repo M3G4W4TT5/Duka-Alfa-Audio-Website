@@ -239,11 +239,12 @@ export const partners: Partner[] = [
   { slug: "alphatheta", name: "AlphaTheta", logo: "/partners/alphatheta.png" },
 ];
 
+// Equipment quantities are review placeholders until the client supplies inventory.
 export const equipmentGroups: EquipmentGroup[] = [
   {
     id: "sound",
     title: "Sound",
-    summary: "Live sound, with TT+ Audio at the centre.",
+    summary: "+100 speakers",
     items: [
       {
         name: "TT+ Audio GTX 12",
@@ -279,7 +280,7 @@ export const equipmentGroups: EquipmentGroup[] = [
   {
     id: "rigging",
     title: "Rigging",
-    summary: "Structures and suspended systems.",
+    summary: "+50 rigging components",
     items: [
       {
         name: "Truss & support",
@@ -296,39 +297,31 @@ export const equipmentGroups: EquipmentGroup[] = [
   {
     id: "stage",
     title: "Stage",
-    summary: "A platform for the performance.",
+    summary: "+100 stage modules",
     items: [
       {
         name: "Stage structures",
         description:
           "Stage layout and structure are discussed around the event and site.",
-        photo: {
-          image: media.production,
-          alt: "A live performance beneath stage lighting.",
-        },
       },
     ],
   },
   {
     id: "lights",
     title: "Lights",
-    summary: "Lighting for atmosphere and performance.",
+    summary: "+100 lighting fixtures",
     items: [
       {
         name: "Stage & club lighting",
         description:
           "Lighting systems for live events and permanent installations.",
-        photo: {
-          image: media.lighting,
-          alt: "Light beams spanning a club audience.",
-        },
       },
     ],
   },
   {
     id: "led-screens",
     title: "LED Screens",
-    summary: "Visuals at event scale.",
+    summary: "+100 LED panels",
     items: [
       {
         name: "Modular LED screens",
