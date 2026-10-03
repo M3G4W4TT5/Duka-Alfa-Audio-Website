@@ -54,6 +54,10 @@ Keep the header visible through the homepage hero. Beyond the hero, downward scr
 
 Use a compact footer with three circular social links (WhatsApp, Facebook and Instagram) beneath the supplied logo. Each is 50px with a 30px brand mark, an upward colour fill and a matching tooltip on hover or keyboard focus. Use WhatsApp green, Facebook blue and the supplied Instagram gradient. Split navigation into About Us/Stories/Equipment and Partners/Contact columns; place the second column where the former social text links appeared. Retain the Memory(One) design credit and legal links. Centre all footer contents on mobile.
 
+### Clickable cards
+
+Service and story overview cards are whole-card links. Omit repeated Learn More and Read Story labels. Retain the subtle image zoom on hover. Show a white 2.5px edge with a diagonal gradient reveal from 0% to 100% over 0.6 seconds on hover or visible keyboard focus; offset the edge 5px outside the card. Respect reduced motion and retain the existing keyboard focus outline. Use the shared card components on the homepage and overview pages.
+
 ## Page patterns
 
 ### Homepage

@@ -1,0 +1,23 @@
+@property --card-edge-progress {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}
+.card-edge {
+  position: relative;
+}
+.card-edge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-image-source: linear-gradient(-45deg, var(--color-ink) var(--card-edge-progress), transparent 0%);
+  border-image-width: 2.5px;
+  border-image-slice: 1;
+  border-image-outset: 5px;
+  transition: --card-edge-progress 0.6s;
+}
+.card-edge:hover::after,
+.card-edge:focus-visible::after {
+  --card-edge-progress: 100%;
+}

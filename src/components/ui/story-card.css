@@ -7,10 +7,19 @@
   min-width: 0;
 }
 .story-card > a {
+  display: block;
+  height: 100%;
   text-decoration: none;
 }
 .story-card-photo {
+  overflow: hidden;
   height: clamp(280px, 30vw, 420px);
+}
+.story-card-photo img {
+  transition: transform var(--motion-fade);
+}
+.story-card a:hover img {
+  transform: scale(1.025);
 }
 .story-card-copy {
   padding-block: 1.5rem;

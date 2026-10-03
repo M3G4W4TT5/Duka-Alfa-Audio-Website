@@ -37,15 +37,6 @@
   font-size: 0.95rem;
   color: var(--color-muted);
 }
-.card-action {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  margin-top: auto;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
 @media (max-width: 1100px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);

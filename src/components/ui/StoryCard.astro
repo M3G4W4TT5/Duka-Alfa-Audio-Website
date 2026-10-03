@@ -1,8 +1,8 @@
 ---
-import { ArrowUpRight } from "lucide-react";
 import type { Story } from "../../data/types";
 import Photo from "../media/Photo.astro";
 import "./story-card.css";
+import "./card-edge.css";
 interface Props {
   story: Story;
 }
@@ -10,15 +10,13 @@ const { story } = Astro.props;
 ---
 
 <article class="story-card">
-  <a href={`/stories/${story.slug}/`}
+  <a class="card-edge" href={`/stories/${story.slug}/`}
     ><div class="story-card-photo">
       <Photo photo={story.photo} sizes="(min-width: 700px) 50vw, 100vw" />
     </div><div class="story-card-copy">
       <p class="eyebrow muted">{story.tags.join(" · ")}</p><h2>
         {story.title}
-      </h2><p class="muted">{story.introduction}</p><span class="card-action"
-        >Read Story<ArrowUpRight className="icon" size=20 aria-hidden="true" /></span
-      >
+      </h2><p class="muted">{story.introduction}</p>
     </div></a
   >
 </article>
