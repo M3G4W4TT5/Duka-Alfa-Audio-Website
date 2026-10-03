@@ -1,0 +1,15 @@
+.services-page {
+  padding-top: 2rem;
+}
+.services-page .services-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+.services-page .service-card-photo {
+  height: clamp(280px, 30vw, 420px);
+}
+@media (max-width: 700px) {
+  .services-page .services-grid {
+    grid-template-columns: 1fr;
+  }
+}

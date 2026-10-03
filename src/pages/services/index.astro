@@ -1,0 +1,16 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageIntro from "../../components/ui/PageIntro.astro";
+import ServiceCard from "../../components/ui/ServiceCard.astro";
+import { services } from "../../lib/content";
+import "../../styles/services-page.css";
+---
+
+<SiteLayout title="Our Services">
+  <PageIntro title="Our Services." compact />
+  <section class="services-page section wrap" aria-label="All services">
+    <div class="services-grid">
+      {services.map((service) => <ServiceCard service={service} />)}
+    </div>
+  </section>
+</SiteLayout>

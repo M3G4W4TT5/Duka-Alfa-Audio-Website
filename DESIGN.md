@@ -84,6 +84,8 @@ Individual partner pages place the supplied logo to the right of the partner tit
 
 ### Supporting pages
 
+The Services overview at `/services/` lists all five services using the existing service cards in a responsive grid matching the Stories overview. Service detail pages omit the Our Services eyebrow.
+
 Contact sections omit the Get in Touch eyebrow. The homepage has no divider between partners and contact. On desktop align the introductory heading with the top of the Name/Email input borders; on mobile retain stacked reflow. The Contact page starts directly with this contact section and omits the separate page introduction and divider.
 
 The company page omits its introductory eyebrow and uses smaller gaps around its body sections.
