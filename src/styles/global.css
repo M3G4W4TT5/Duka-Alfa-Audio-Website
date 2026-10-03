@@ -1,4 +1,5 @@
 @import "./tokens.css";
+@import "./fonts.css";
 
 * {
   box-sizing: border-box;
@@ -34,6 +35,7 @@ a {
 }
 button {
   color: inherit;
+  font-weight: 300;
   cursor: pointer;
 }
 button:disabled {
@@ -52,17 +54,19 @@ p {
 h1,
 h2,
 h3 {
-  font-weight: 400;
   line-height: 1.14;
   letter-spacing: -0.025em;
 }
 h1 {
+  font-weight: 900;
   font-size: clamp(2.6rem, 5.4vw, 5.2rem);
 }
 h2 {
+  font-weight: 700;
   font-size: clamp(2rem, 3.2vw, 3rem);
 }
 h3 {
+  font-weight: 500;
   font-size: clamp(1.35rem, 2vw, 1.8rem);
 }
 p {
@@ -102,6 +106,12 @@ p {
   max-width: var(--text-width);
   font-size: clamp(1.05rem, 1.7vw, 1.3rem);
 }
+p.prose.muted {
+  font-weight: 300;
+}
+p.eyebrow.muted {
+  font-weight: 100;
+}
 .button {
   display: inline-flex;
   justify-content: center;
@@ -114,6 +124,7 @@ p {
   background: transparent;
   text-decoration: none;
   font-size: 0.8rem;
+  font-weight: 300;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   transition:

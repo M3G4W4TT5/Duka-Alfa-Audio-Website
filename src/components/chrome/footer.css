@@ -65,6 +65,9 @@
   display: flex;
   gap: 1.5rem;
 }
+.footer-bottom a {
+  font-weight: 100;
+}
 .contact-fab {
   position: fixed;
   bottom: 1.3rem;

@@ -7,7 +7,7 @@
   --color-line: #686868;
   --color-overlay: #000000;
   --image-shade: 0.55;
-  --font-body: Arial, Helvetica, sans-serif;
+  --font-body: "FK Grotesk Neue", Arial, Helvetica, sans-serif;
   --page-gutter: clamp(1.25rem, 5vw, 5rem);
   --section-space: clamp(4rem, 8vw, 8rem);
   --content-width: 1440px;

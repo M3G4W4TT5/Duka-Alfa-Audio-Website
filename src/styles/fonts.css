@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "FK Grotesk Neue";
+  src: url("/fonts/FKGroteskNeue-Thin.otf") format("opentype");
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FK Grotesk Neue";
+  src: url("/fonts/FKGroteskNeue-Light.otf") format("opentype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FK Grotesk Neue";
+  src: url("/fonts/FKGroteskNeue-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FK Grotesk Neue";
+  src: url("/fonts/FKGroteskNeue-Medium.otf") format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FK Grotesk Neue";
+  src: url("/fonts/FKGroteskNeue-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FK Grotesk Neue";
+  src: url("/fonts/FKGroteskNeue-Black.otf") format("opentype");
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
