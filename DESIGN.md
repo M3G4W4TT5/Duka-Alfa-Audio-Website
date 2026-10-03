@@ -78,7 +78,7 @@ Display supplied partner logos in a spaced grid linking to individual partner pa
 
 ### Supporting pages
 
-Contact sections omit the Get in Touch eyebrow. On desktop align the introductory heading with the top of the Name/Email input borders; on mobile retain stacked reflow.
+Contact sections omit the Get in Touch eyebrow. On desktop align the introductory heading with the top of the Name/Email input borders; on mobile retain stacked reflow. The Contact page starts directly with this contact section and omits the separate page introduction and divider.
 
 The company page omits its introductory eyebrow and uses smaller gaps around its body sections.
 

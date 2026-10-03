@@ -1,9 +1,13 @@
 ---
 import "./contact.css";
+interface Props {
+  standalone?: boolean;
+}
+const { standalone = false } = Astro.props;
 ---
 
 <section
-  class="contact section wrap"
+  class:list={["contact section wrap", { "contact-page": standalone }]}
   id="contact"
   aria-labelledby="contact-title"
 >

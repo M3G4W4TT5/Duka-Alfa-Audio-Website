@@ -65,3 +65,8 @@
     grid-template-columns: 1fr;
   }
 }
+
+.contact-page {
+  border-top: 0;
+  padding-top: calc(var(--header-height) + 2rem);
+}
