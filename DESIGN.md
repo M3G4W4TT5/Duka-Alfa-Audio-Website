@@ -4,7 +4,7 @@ This file defines the current design for Duka Alfa Audio. Update the relevant se
 
 ## Visual direction
 
-Use a black background, white text, spacious layouts and large supplied photographs. Keep accents restrained. Buttons have transparent backgrounds and white outlines; hover reverses their foreground and background colours. Preserve supplied logo geometry, aspect ratios and lettering, including the Memory(One) footer credit.
+Use a black background, white text, spacious layouts and large supplied photographs. Keep accents restrained. Content action links use white text with line-height 2 and a 2px underline that expands from the centre over 0.4 seconds on hover or keyboard focus. They have no box outline. Only navbar Get in Touch and contact-form Send Message retain transparent backgrounds and white outlines; hover reverses their foreground and background colours. Preserve supplied logo geometry, aspect ratios and lettering, including the Memory(One) footer credit.
 
 Use shared tokens in `src/styles/tokens.css` for colours, spacing, typography and motion. Use existing responsive sizes and spacing unless a revision changes them. Photo crops respect individual focal points; reserve image dimensions to avoid layout shifts.
 
@@ -38,7 +38,7 @@ Use only [Lucide React](https://lucide.dev/guide/react) (`lucide-react`) for int
 | Services disclosure | `Plus`, `Minus` |
 | Homepage scroll cue | `ChevronDown` |
 
-Use consistent outline strokes and inherit text colour through `currentColor`, including hover states. The standard size is 20 CSS pixels; adjust only where the control needs it. Do not add an icon to every link or contact detail. Supplied brand logos, wordmarks and the favicon remain identity assets. Carousel dots remain state indicators.
+Use consistent outline strokes and inherit text colour through `currentColor`, including hover states. The standard size is 20 CSS pixels; adjust only where the control needs it. Do not add an icon to every link or contact detail. Brand logos, wordmarks and the favicon remain identity assets. The explicitly requested footer WhatsApp, Facebook and Instagram marks use Simple Icons brand SVGs; Lucide remains the source for interface icons. Carousel dots remain state indicators.
 
 Use named imports. Render icons statically in Astro presentation components; use the same library inside interactive React components. Hide decorative icons from assistive technology. Give icon-only buttons and links an accessible name on the control.
 
@@ -52,7 +52,7 @@ Keep the header visible through the homepage hero. Beyond the hero, downward scr
 
 ### Footer
 
-Use a minimal footer with the supplied brand identity, navigation, social links, Memory(One) design credit and legal links. Centre all footer contents on mobile.
+Use a compact footer with three circular social links (WhatsApp, Facebook and Instagram) beneath the supplied logo. Each is 50px with a 30px brand mark, an upward colour fill and a matching tooltip on hover or keyboard focus. Use WhatsApp green, Facebook blue and the supplied Instagram gradient. Split navigation into About Us/Stories/Equipment and Partners/Contact columns; place the second column where the former social text links appeared. Retain the Memory(One) design credit and legal links. Centre all footer contents on mobile.
 
 ## Page patterns
 

@@ -14,6 +14,7 @@ export const site = {
     "Expertise, passion and reliability guide everything we do.",
   ],
   social: [
+    { label: "WhatsApp", href: "https://wa.me/38345385277" },
     { label: "Facebook", href: "https://www.facebook.com/dukaalfaaudio/" },
     { label: "Instagram", href: "https://www.instagram.com/dukalfaudio/" },
   ],

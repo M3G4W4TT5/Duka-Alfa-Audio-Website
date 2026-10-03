@@ -8,7 +8,7 @@ interface Props {
 const { href, label, arrow = false } = Astro.props;
 ---
 
-<a class="button" href={href}
+<a class="menu__link" href={href}
   >{label}{
     arrow && (
       <ArrowUpRight className="icon" size=20 aria-hidden="true" />

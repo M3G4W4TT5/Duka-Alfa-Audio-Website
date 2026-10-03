@@ -138,7 +138,7 @@ export default function StoriesCarousel({ stories }: Props) {
                 </ul>
               )}
               <a
-                className="button"
+                className="menu__link"
                 href={`/stories/${story.slug}/`}
                 tabIndex={active === index ? 0 : -1}
               >

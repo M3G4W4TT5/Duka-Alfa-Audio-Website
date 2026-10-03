@@ -9,7 +9,7 @@
 .about-intro .prose {
   color: var(--color-muted);
 }
-.about-intro .button {
+.about-intro .menu__link {
   margin-top: 0.5rem;
 }
 @media (max-width: 900px) {

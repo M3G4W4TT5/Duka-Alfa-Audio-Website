@@ -112,6 +112,37 @@ p.prose.muted {
 p.eyebrow.muted {
   font-weight: 100;
 }
+/* Content actions; navbar contact and form submit retain .button. */
+.menu__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: fit-content;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 2;
+  position: relative;
+}
+.menu__link::before {
+  content: '';
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #fff;
+  position: absolute;
+  bottom: -0.25rem;
+  left: 50%;
+  transition: width 0.4s, left 0.4s;
+}
+.menu__link:hover::before,
+.menu__link:focus-visible::before {
+  width: 100%;
+  left: 0;
+}
 .button {
   display: inline-flex;
   justify-content: center;

@@ -9,7 +9,7 @@
 .page-banner {
   height: clamp(350px, 48vw, 740px);
 }
-.page-intro .button {
+.page-intro .menu__link {
   margin-top: 0.75rem;
 }
 
