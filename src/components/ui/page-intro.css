@@ -12,3 +12,10 @@
 .page-intro .button {
   margin-top: 0.75rem;
 }
+
+.page-intro-compact {
+  padding-bottom: 0;
+}
+.page-intro-compact > p:last-child {
+  margin-bottom: 0;
+}

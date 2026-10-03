@@ -68,6 +68,8 @@ Use a full-screen image carousel with a stationary central heading and message. 
 
 Use a full-width carousel supporting drag, swipe and keyboard navigation. Each slide has an image, title, up to four factual tags and Learn More. Place clickable pagination dots at the bottom centre, with the active dot filled white, without previous/next arrow buttons. More Stories links to the overview.
 
+The stories overview omits the Selected Work eyebrow and places its image cards closer to the introductory text.
+
 Use a shared case-article template for context, confirmed contribution, gallery, relevant facts and enquiry. Omit unsupported or absent content rather than filling it with invented details.
 
 ### Equipment and partners
