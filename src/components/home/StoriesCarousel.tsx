@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { BrowserPhoto } from "../../data/types";
 import "./stories.css";
@@ -155,14 +156,14 @@ export default function StoriesCarousel({ stories }: Props) {
             aria-label="Previous story"
             onClick={() => go(active - 1)}
           >
-            <img className="icon" src="/icons/chevron-left.svg" alt="" />
+            <ChevronLeft className="icon" size={20} aria-hidden="true" />
           </button>
           <button
             className="story-arrow story-next"
             aria-label="Next story"
             onClick={() => go(active + 1)}
           >
-            <img className="icon" src="/icons/chevron-right.svg" alt="" />
+            <ChevronRight className="icon" size={20} aria-hidden="true" />
           </button>
           <div className="story-dots" aria-label="Choose a story">
             {stories.map((story, index) => (

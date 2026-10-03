@@ -1,3 +1,4 @@
+import { Minus, Plus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { Service } from "../../data/types";
 import { navigation } from "../../data/navigation";
@@ -120,7 +121,7 @@ export default function Header({ services, home = false }: Props) {
               </a>
             ))}
             <details className="menu-services">
-              <summary>Services</summary>
+              <summary>Services<Plus className="menu-expand" size={20} aria-hidden="true" /><Minus className="menu-collapse" size={20} aria-hidden="true" /></summary>
               <div className="service-submenu">
                 {services.map((service) => (
                   <a

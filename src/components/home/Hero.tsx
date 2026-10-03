@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { BrowserPhoto } from "../../data/types";
 import "./hero.css";
@@ -93,14 +94,14 @@ export default function Hero({ slides, title, message, intervalMs }: Props) {
           onMouseLeave={() => setHovered(false)}
         >
           <button aria-label="Previous hero image" onClick={() => move(-1)}>
-            <img className="icon" src="/icons/chevron-left.svg" alt="" />
+            <ChevronLeft className="icon" size={20} aria-hidden="true" />
           </button>
           <span aria-hidden="true">
             {String(active + 1).padStart(2, "0")} /{" "}
             {String(slides.length).padStart(2, "0")}
           </span>
           <button aria-label="Next hero image" onClick={() => move(1)}>
-            <img className="icon" src="/icons/chevron-right.svg" alt="" />
+            <ChevronRight className="icon" size={20} aria-hidden="true" />
           </button>
           <button
             aria-label={
@@ -110,11 +111,11 @@ export default function Hero({ slides, title, message, intervalMs }: Props) {
             disabled={reduced}
             onClick={() => setPaused(!paused)}
           >
-            <img
-              className="icon"
-              src={`/icons/${paused || reduced ? "play" : "pause"}.svg`}
-              alt=""
-            />
+            {paused || reduced ? (
+              <Play className="icon" size={20} aria-hidden="true" />
+            ) : (
+              <Pause className="icon" size={20} aria-hidden="true" />
+            )}
           </button>
         </div>
       )}

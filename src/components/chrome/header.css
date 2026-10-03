@@ -89,13 +89,18 @@
 .menu-services summary::-webkit-details-marker {
   display: none;
 }
-.menu-services summary::after {
-  content: "+";
+.menu-services summary svg {
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
   margin-left: 0.7em;
-  font-size: 0.7em;
 }
-.menu-services[open] summary::after {
-  content: "−";
+.menu-services summary .menu-collapse,
+.menu-services[open] summary .menu-expand {
+  display: none;
+}
+.menu-services[open] summary .menu-collapse {
+  display: inline-block;
 }
 .service-submenu {
   display: grid;

@@ -1,13 +1,34 @@
-# Duka Alfa Audio Website instructions
+# Repository guidance
 
-The human user's current stage request controls scope. Step 2's design brief was explicitly approved on 30 September 2026. Implement the responsive homepage and supporting service, about, stories/case-template, equipment, partner, contact and review legal pages. Keep noindex and disabled contact delivery. Do not launch the business domain.
+## References
 
-Keep Astro static output, TypeScript, Node 24, the lockfile, separate `studio/` workspace and repository-root `functions/`. Use React islands only for a useful interaction. Both packages remain private.
+- [DESIGN.md](DESIGN.md) is the source of truth for design requirements. Update design decisions there, not in this file.
+- [README.md](README.md) describes local setup and the current environment configuration.
+- [docs/operations-handoff.md](docs/operations-handoff.md) contains deployment and operations guidance.
 
-Leave `PUBLIC_SANITY_PROJECT_ID` unset for account-free demo content. Keep `PUBLIC_CONTACT_FORM_READY=0` and `CONTACT_FORM_ENABLED=0`. Do not configure Sanity, mail, Turnstile, webhooks, deploy hooks, custom domains or DNS during this stage.
+## Architecture
 
-Follow the accepted direction in docs/step-2-design.md. Use dedicated CSS files, shared custom-property tokens, typed fixtures and reusable components. Derive final Sanity schema from settled components later; case articles belong in Sanity. Alfa Audio only; Music Store is future scope. Keep all five services; Bespoke Home Audio sits within Installations. Do not invent business claims.
+- Use Node 24, TypeScript and Astro static output. Retain the root `functions/` directory and separate `studio/` npm workspace; both packages remain private.
+- Compose pages in `src/pages` from shared layouts and reusable components. Keep typed content in `src/data` and load it through `src/lib/content.ts`.
+- Use React islands for interactions that need client state. Render presentation components statically where possible.
+- Keep styles in dedicated CSS files. Keep dependency changes and `package-lock.json` consistent.
 
-Only individually selected website assets authorised by the user may enter this public repository: the original supplied identity, selected photographs from Web Package/Selection, selected partner logos/product images, and the user-supplied Memory(One) footer logo. Preserve original logo geometry and sibling source folders. Never copy entire private packages, unselected media, reference screenshots, provenance/approval records, operational addresses or credentials. Public-safe asset credits and implementation documentation are allowed. Read local private handoff guidance without copying it here.
+## Scope and data
 
-Commit narrowly; inspect `git diff` and `git ls-files` before pushing. Run `npm run check` and `npm run build` for code changes. Verify hosted commit, build log and rendered URL separately from local checks. Keep tokens, passwords, hook URLs and contact message bodies out of files, logs and chat. Stop at the authorised stage boundary.
+- Preserve unrelated working-tree changes and sibling source folders. Make targeted changes requested by the user.
+- Do not invent business claims or publish unsupported content.
+- Include only individually selected assets authorised for website use. Keep private handoff packages, unselected media, reference captures, approval records and operational addresses outside this public repository.
+- Never put credentials, tokens, hook URLs or contact message bodies in source files, logs or chat.
+- Change provider configuration, environment switches, domains and production services only when the task authorises those changes. Consult the current setup documentation first.
+
+## Validation
+
+- Run `npm run check` and `npm run build` after code or dependency changes.
+- For interface changes, verify representative desktop and mobile layouts, relevant interactions and accessibility in a browser.
+- Inspect `git diff --check`, the complete diff and tracked files before committing or pushing. Keep commits focused on the requested revision.
+- Report local checks, CI results and hosted verification separately. A local build does not establish that a deployment is live.
+
+## Delivery
+
+- Commit each completed revision locally. Push to main only on the user's explicit command.
+- After an authorised push, check CI and verify the deployed commit and affected rendered pages when hosting access is available.

@@ -1,4 +1,5 @@
 ---
+import { ArrowUpRight } from "lucide-react";
 import type { Story } from "../../data/types";
 import Photo from "../media/Photo.astro";
 import "./story-card.css";
@@ -16,11 +17,7 @@ const { story } = Astro.props;
       <p class="eyebrow muted">{story.tags.join(" · ")}</p><h2>
         {story.title}
       </h2><p class="muted">{story.introduction}</p><span class="card-action"
-        >Read Story<img
-          class="icon"
-          src="/icons/arrow-up-right.svg"
-          alt=""
-        /></span
+        >Read Story<ArrowUpRight className="icon" size=20 aria-hidden="true" /></span
       >
     </div></a
   >
