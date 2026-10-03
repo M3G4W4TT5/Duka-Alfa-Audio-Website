@@ -80,6 +80,8 @@ On the Equipment page, omit the introductory eyebrow and the separate TT+ logo/h
 
 Display supplied partner logos in a spaced grid linking to individual partner pages. The partners overview omits its Brands & Equipment eyebrow and places the logo grid closer to the introduction.
 
+Individual partner pages place the supplied logo to the right of the partner title, omit the Our Partners eyebrow and redundant partner & Duka heading, and bring the description/enquiry section closer to the title. Equipment appears only on the homepage and Equipment page.
+
 ### Supporting pages
 
 Contact sections omit the Get in Touch eyebrow. On desktop align the introductory heading with the top of the Name/Email input borders; on mobile retain stacked reflow. The Contact page starts directly with this contact section and omits the separate page introduction and divider.

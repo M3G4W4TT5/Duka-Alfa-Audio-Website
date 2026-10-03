@@ -8,11 +8,12 @@ interface Props {
   intro?: string;
   photo?: PhotoType;
   compact?: boolean;
+  class?: string;
 }
-const { title, eyebrow, intro, photo, compact = false } = Astro.props;
+const { title, eyebrow, intro, photo, compact = false, class: className } = Astro.props;
 ---
 
-<section class:list={["page-intro wrap", { "page-intro-compact": compact }]}>
+<section class:list={["page-intro wrap", className, { "page-intro-compact": compact }]}>
   {eyebrow && <p class="eyebrow muted">{eyebrow}</p>}
   <h1>{title}</h1>
   {intro && <p class="prose muted">{intro}</p>}

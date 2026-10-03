@@ -2,7 +2,6 @@
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageIntro from "../../components/ui/PageIntro.astro";
 import Button from "../../components/ui/Button.astro";
-import Equipment from "../../components/home/Equipment.astro";
 import { partners } from "../../lib/content";
 import type { Partner } from "../../data/types";
 import "../../styles/partner-page.css";
@@ -19,7 +18,7 @@ const { partner } = Astro.props;
 ---
 
 <SiteLayout title={partner.name}
-  ><PageIntro title={partner.name} eyebrow="Our Partners"
+  ><PageIntro title={partner.name} compact class="partner-page-intro"
     ><img
       class="partner-page-logo"
       src={partner.logo}
@@ -27,8 +26,8 @@ const { partner } = Astro.props;
       width="300"
       height="150"
     /></PageIntro
-  ><section class="section wrap">
-    <h2>{partner.name} & Duka</h2><p class="prose muted">
+  ><section class="partner-page-content section wrap">
+    <p class="prose muted">
       {
         partner.description
           ? partner.description
@@ -42,5 +41,5 @@ const { partner } = Astro.props;
         </p>
       )
     }<Button href="/contact/" label="Get in Touch" />
-  </section>{partner.slug === "tt-audio" && <Equipment />}</SiteLayout
+  </section></SiteLayout
 >
