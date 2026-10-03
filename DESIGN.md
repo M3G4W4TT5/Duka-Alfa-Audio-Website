@@ -78,7 +78,7 @@ Highlight TT+ Audio. Order expandable equipment groups as Sound → Rigging → 
 
 On the Equipment page, omit the introductory eyebrow and the separate TT+ logo/heading/paragraph block. Place the equipment list closer to the page introduction. The homepage retains its TT+ introduction.
 
-Display supplied partner logos in a spaced grid linking to individual partner pages.
+Display supplied partner logos in a spaced grid linking to individual partner pages. The partners overview omits its Brands & Equipment eyebrow and places the logo grid closer to the introduction.
 
 ### Supporting pages
 

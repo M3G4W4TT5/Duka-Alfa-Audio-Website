@@ -8,7 +8,7 @@ const { heading = true } = Astro.props;
 ---
 
 <section
-  class="partners section wrap"
+  class:list={["partners section wrap", { "partners-page": !heading }]}
   id="partners"
   aria-labelledby="partners-title"
 >

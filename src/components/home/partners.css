@@ -32,3 +32,10 @@
     min-height: 110px;
   }
 }
+
+.partners-page {
+  padding-top: 2rem;
+}
+.partners-page .partners-grid {
+  margin-top: 0;
+}
