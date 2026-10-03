@@ -93,14 +93,17 @@ export default function Hero({ slides, title, message, intervalMs }: Props) {
         <h1>{title}</h1>
         <p>{message}</p>
       </div>
-      {!scrollDismissed && (
-        <a className="hero-scroll" href="#about">
-          <span className="hero-scroll-box">
-            <ChevronDown size={32} aria-hidden="true" />
-          </span>
-          <span>Scroll</span>
-        </a>
-      )}
+      <a
+        className={`hero-scroll${scrollDismissed ? " is-dismissed" : ""}`}
+        href="#about"
+        inert={scrollDismissed}
+        aria-hidden={scrollDismissed || undefined}
+      >
+        <span className="hero-scroll-box">
+          <ChevronDown size={32} aria-hidden="true" />
+        </span>
+        <span>Scroll</span>
+      </a>
     </section>
   );
 }

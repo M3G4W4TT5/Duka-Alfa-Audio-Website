@@ -59,6 +59,15 @@
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--motion-fade), visibility 0s;
+}
+.hero-scroll.is-dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--motion-fade), visibility 0s var(--motion-fade);
 }
 @media (max-width: 600px) {
   .hero {

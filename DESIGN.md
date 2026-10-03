@@ -58,11 +58,11 @@ Use a minimal footer with the supplied brand identity, navigation, social links,
 
 ### Homepage
 
-Order sections as hero → company introduction → four service cards → selected stories → equipment → partners → contact → footer. Use About us for the company introduction heading and READ MORE for its button. Omit the service and selected-stories subtitles. Retain all five service routes; Bespoke Home Audio is included within Installations in the homepage and navigation.
+Order sections as hero → company introduction → four service cards → selected stories → equipment → partners → contact → footer. Use About us for the company introduction heading and READ MORE for its button. Omit the service and selected-stories subtitles. Retain all five service routes; Bespoke Home Audio remains grouped within Installations in navigation; omit the separate homepage sentence linking to it.
 
 ### Hero
 
-Use a full-screen image carousel with a stationary central heading and message. Advance every three seconds by default, with optional per-slide timing. Omit previous/next controls, playback controls and the image counter. Preserve keyboard-focus and document-visibility pauses and honour reduced motion. Use a centred SCROLL cue with an animated Lucide down icon; it disappears after the first downward scroll and stays hidden until a new page load. Use only selected hero photographs; video behaviour requires a separate agreed specification.
+Use a full-screen image carousel with a stationary central heading and message. Advance every three seconds by default, with optional per-slide timing. Omit previous/next controls, playback controls and the image counter. Preserve keyboard-focus and document-visibility pauses and honour reduced motion. Use a centred SCROLL cue with an animated Lucide down icon; it fades out after the first downward scroll and stays hidden until a new page load. Use only selected hero photographs; video behaviour requires a separate agreed specification.
 
 ### Stories
 
@@ -84,7 +84,7 @@ Individual partner pages place the supplied logo to the right of the partner tit
 
 ### Supporting pages
 
-Contact sections omit the Get in Touch eyebrow. On desktop align the introductory heading with the top of the Name/Email input borders; on mobile retain stacked reflow. The Contact page starts directly with this contact section and omits the separate page introduction and divider.
+Contact sections omit the Get in Touch eyebrow. The homepage has no divider between partners and contact. On desktop align the introductory heading with the top of the Name/Email input borders; on mobile retain stacked reflow. The Contact page starts directly with this contact section and omits the separate page introduction and divider.
 
 The company page omits its introductory eyebrow and uses smaller gaps around its body sections.
 
