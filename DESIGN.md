@@ -70,7 +70,7 @@ Use a full-width carousel supporting drag, swipe and keyboard navigation. Each s
 
 The stories overview omits the Selected Work eyebrow and places its image cards closer to the introductory text.
 
-Use a shared case-article template for context, confirmed contribution, gallery, relevant facts and enquiry. Omit unsupported or absent content rather than filling it with invented details.
+Story detail pages omit the Project Stories eyebrow. Use a shared case-article template for context, confirmed contribution, gallery, relevant facts and enquiry. Omit unsupported or absent content rather than filling it with invented details.
 
 ### Equipment and partners
 
