@@ -76,6 +76,8 @@ Use a shared case-article template for context, confirmed contribution, gallery,
 
 Highlight TT+ Audio. Order expandable equipment groups as Sound → Rigging → Stage → Lights → LED Screens. Use equipment cards inside dropdowns. Sound cards retain product thumbnails; Stage and Lights use text cards without large event photos. Category summaries show quantity/type placeholders pending client inventory. Omit the configuration/availability note.
 
+On the Equipment page, omit the introductory eyebrow and the separate TT+ logo/heading/paragraph block. Place the equipment list closer to the page introduction. The homepage retains its TT+ introduction.
+
 Display supplied partner logos in a spaced grid linking to individual partner pages.
 
 ### Supporting pages

@@ -6,12 +6,13 @@ import Button from "../ui/Button.astro";
 import "./equipment.css";
 interface Props {
   heading?: boolean;
+  introduction?: boolean;
 }
-const { heading = true } = Astro.props;
+const { heading = true, introduction = true } = Astro.props;
 ---
 
 <section
-  class="equipment section wrap"
+  class:list={["equipment section wrap", { "equipment-page": !heading }]}
   id="equipment"
   aria-labelledby="equipment-title"
 >
@@ -32,7 +33,7 @@ const { heading = true } = Astro.props;
       </h2>
     )
   }
-  <div class="equipment-intro">
+  {introduction && <div class="equipment-intro">
     <img
       src="/partners/tt-audio.png"
       alt="TT+ Audio"
@@ -46,6 +47,7 @@ const { heading = true } = Astro.props;
       </p>
     </div>
   </div>
+  }
   <div class="equipment-list">
     {
       equipmentGroups.map((group) => (
