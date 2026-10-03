@@ -2,19 +2,19 @@
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageIntro from "../../components/ui/PageIntro.astro";
 import Button from "../../components/ui/Button.astro";
+import "../../styles/about-page.css";
 import { site } from "../../lib/content";
 ---
 
 <SiteLayout title="Discover Duka">
   <PageIntro
     title="A passion for sound."
-    eyebrow="About Duka Alfa Audio"
     intro="From a few used speakers in 2008 to the stages and spaces we work with today."
   />
-  <section class="section wrap">
+  <section class="about-page-section section wrap">
     <div class="prose">{site.about.map((paragraph) => <p>{paragraph}</p>)}</div>
   </section>
-  <section class="section wrap">
+  <section class="about-page-section section wrap">
     <h2>A story with people at its heart.</h2><p class="prose muted">
       The founder’s story, family archive and personal milestones will form the
       next design pass for this page.

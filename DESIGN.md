@@ -46,7 +46,7 @@ Use named imports. Render icons statically in Astro presentation components; use
 
 ### Header and navigation
 
-Place the original white mark on the left, the wordmark in the centre and Get in Touch on the right. The mark toggles a fading black navigation overlay. Services expands inside navigation; group Bespoke Home Audio within Installations.
+Place the original white mark on the left, the wordmark in the centre and Get in Touch on the right. The mark toggles a fading black navigation overlay. Use About Us for the company navigation link. Services expands inside navigation; group Bespoke Home Audio within Installations.
 
 Keep the header visible through the homepage hero. Beyond the hero, downward scrolling hides the entire header and upward scrolling reveals it. On supporting pages, use the same directional scroll behaviour. Mouse focus does not hold the header open; visible keyboard focus keeps its control accessible. Keep a fixed circular mail/contact link at the bottom right.
 
@@ -77,6 +77,8 @@ Highlight TT+ Audio. Order expandable equipment groups as Sound → Rigging → 
 Display supplied partner logos in a spaced grid linking to individual partner pages.
 
 ### Supporting pages
+
+The company page omits its introductory eyebrow and uses smaller gaps around its body sections.
 
 Use shared layouts for service details, company introduction, stories overview and cases, equipment, partners, contact and legal information. Keep enquiry actions clear. Forms expose their actual availability and validation state; operational enablement is managed outside this design specification.
 
