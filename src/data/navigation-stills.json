@@ -1,6 +1,6 @@
 {
   "presetSha256": "9ecdf3bccc36d2dae5938dedfa4f58b415ba5f60c66d006727d3e46f23eeb3b5",
-  "simulatorIntegrity": "sha512-ioRd1UgMy81gowQ72DYTksFxBZ2iaypN+dRTIn7s0CLWA5bdDn//U76a/trFdSvTerv/tKygnSx3rMTlIc+LhA==",
-  "desktopSha256": "0e4d2e428c48c887fd91cbaf1e839af6f6a56186fe3f4c67656979be7564801c",
+  "simulatorIntegrity": "sha512-YcUFrJpWQrw5rOD0vjpRX9ynnfeDwAtMYRokD7I5i8nxi8IomlIrVP8niWK4GgCqgtRgLu+nMDmg1TEjfO8Eiw==",
+  "desktopSha256": "8ee6c0293084ffd83788f4df44615792e6658c15e7b119f1918b30458010ab9d",
   "mobileSha256": "892e921bd0b8e98c8b57372d3cbd30ddc450a91f124dfcf01ce7bde4ea20a496"
 }
