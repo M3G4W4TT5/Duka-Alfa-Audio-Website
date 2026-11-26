@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const siteRoot = fileURLToPath(new URL('.', import.meta.url));
+const packageLock = resolve(siteRoot, 'package-lock.json');
 
 function chladniNavigation() {
   let workingSource;
@@ -34,13 +35,26 @@ function chladniNavigation() {
       }
 
       return {
+        define: {
+          // The source workspace may contain unreleased renderer changes.
+          __CHLADNI_STILL_RELEASE__: JSON.stringify(workingSource ? null :
+            JSON.parse(readFileSync(packageLock, 'utf8'))
+              .packages['node_modules/@duka/chladni'].integrity),
+        },
+        cacheDir: dev ? resolve(siteRoot, workingSource ? 'node_modules/.vite-chladni-source' : 'node_modules/.vite-chladni-pinned') : undefined,
         resolve: { alias, dedupe: ['react', 'react-dom'] },
-        optimizeDeps: { exclude: ['@duka/chladni'] },
+        optimizeDeps: { include: ['react-dom/client'], exclude: ['@duka/chladni'] },
         server,
       };
     },
     configureServer(server) {
       if (workingSource) server.watcher.add(resolve(workingSource, 'src'));
+      else {
+        server.watcher.add(packageLock);
+        server.watcher.on('change', file => {
+          if (resolve(file) === packageLock) void server.restart();
+        });
+      }
     },
   };
 }

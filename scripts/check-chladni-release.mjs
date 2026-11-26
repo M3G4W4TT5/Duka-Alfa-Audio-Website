@@ -24,6 +24,21 @@ assert.equal(release.integrity, `sha512-${digest}`, `${archive} differs from the
 assert.equal(readJson(`node_modules/${name}/package.json`).version, release.version, 'Run npm ci before checking the release');
 console.log(`${name}@${release.version}: tarball and lockfile match`);
 
+const stills = readJson('src/data/navigation-stills.json');
+const presetSource = readFileSync(join(root, 'src/data/navigation.chladni.json'), 'utf8').replaceAll('\r\n', '\n');
+const framing = JSON.parse(presetSource).framing;
+assert.equal(stills.presetSha256, createHash('sha256').update(presetSource).digest('hex'),
+  'Regenerate both navigation stills after changing the preset');
+assert.equal(stills.simulatorIntegrity, release.integrity, 'Regenerate navigation stills after updating the simulator release');
+const profiles = ['desktop', 'mobile'].filter(profile =>
+  framing[profile].enabled && (framing[profile].width < framing.breakpoint) === (profile === 'mobile'));
+for (const profile of profiles) {
+  const still = readFileSync(join(root, `src/assets/navigation-${profile}.webp`));
+  assert.equal(stills[`${profile}Sha256`], createHash('sha256').update(still).digest('hex'),
+    `Regenerate the ${profile} navigation still`);
+}
+console.log(profiles.length ? `Validated starting frames for ${profiles.join(' and ')}` : 'The preset uses live playback for both profiles');
+
 const require = createRequire(import.meta.url);
 const astro = join(dirname(require.resolve('astro/package.json')), 'bin/astro.mjs');
 const temp = mkdtempSync(join(tmpdir(), 'duka-chladni-'));
@@ -56,6 +71,10 @@ try {
       .map(file => readFileSync(join(outDir, file), 'utf8')).join('\n');
     assert.match(emitted, /\.chladni-player/, `${name}: player styles missing`);
     assert.ok(files.some(file => /[/\\]player\.[^/\\]+\.js$/.test(file)), `${name}: player chunk missing`);
+    for (const profile of ['desktop', 'mobile']) {
+      const emittedStill = files.some(file => file.includes(`navigation-${profile}.`) && file.endsWith('.webp'));
+      assert.equal(emittedStill, profiles.includes(profile), `${name}: unexpected ${profile} starting-frame output`);
+    }
 
     const editorMarkers = [
       ['editor entry', files.some(file => /[/\\]editor\.[^/\\]+\.js$/.test(file))],

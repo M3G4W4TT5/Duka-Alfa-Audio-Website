@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Service } from "../../data/types";
 import { navigation } from "../../data/navigation";
 import NavigationChladni from "#navigation-chladni";
+import { navigationStills, useNavigationPresentation } from "./useNavigationPresentation";
 import "./header.css";
 
 interface Props {
@@ -10,8 +11,11 @@ interface Props {
   home?: boolean;
 }
 
+const blankImage = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
 export default function Header({ services, home = false }: Props) {
-  const [open, setOpen] = useState(false);
+  const { open, showArtwork, still, close, toggleMenu, reportArtwork,
+    stillImage, decodeStill, selectCheckedInLook, replaceArtwork, finishReveal } = useNavigationPresentation();
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(!home);
   const root = useRef<HTMLElement>(null);
@@ -51,7 +55,7 @@ export default function Header({ services, home = false }: Props) {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        setOpen(false);
+        close();
         toggle.current?.focus();
       }
       if (event.key !== "Tab") return;
@@ -84,7 +88,7 @@ export default function Header({ services, home = false }: Props) {
       document.body.classList.remove("menu-open");
       document.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [close, open]);
 
   return (
     <header
@@ -103,7 +107,7 @@ export default function Header({ services, home = false }: Props) {
           aria-controls="site-navigation"
           onClick={() => {
             toggle.current?.focus();
-            setOpen(!open);
+            toggleMenu();
           }}
         >
           <img src="/identity/mark.svg" alt="" width="58" height="58" />
@@ -125,8 +129,24 @@ export default function Header({ services, home = false }: Props) {
         className={`navigation-overlay ${open ? "is-open" : ""}`}
         inert={!open}
         aria-hidden={!open}
+        onTransitionEnd={(event) => {
+          if (open && event.target === event.currentTarget && event.propertyName === "opacity") finishReveal();
+        }}
       >
-        <NavigationChladni open={open} dialog={root} />
+        <NavigationChladni open={open} showArtwork={showArtwork} dialog={root} reportArtwork={reportArtwork}
+          selectCheckedInLook={selectCheckedInLook} replaceArtwork={replaceArtwork} />
+        {(navigationStills.desktop || navigationStills.mobile) && (
+          <picture hidden>
+            <source media="(prefers-reduced-motion: reduce)" srcSet={blankImage} />
+            <source media={`(width < ${navigationStills.breakpoint}px)`} srcSet={navigationStills.mobile ?? blankImage} />
+            <img ref={stillImage} onLoad={decodeStill} src={navigationStills.desktop ?? blankImage} alt="" />
+          </picture>
+        )}
+        {still && (
+          <div className={`navigation-artwork navigation-starting-frame ${showArtwork ? "is-fading" : ""}`} aria-hidden="true">
+            <img src={still} alt="" />
+          </div>
+        )}
         <nav className="navigation-scroll" aria-label="Main navigation">
           <div className="overlay-content">
             <div className="menu-links">

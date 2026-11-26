@@ -1,11 +1,16 @@
-import { Component, lazy, Suspense, useEffect, useRef, useState } from "react";
+import { Component, lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { ReactNode, RefObject } from "react";
-import type { ChladniPlayerHandle } from "@duka/chladni/player";
+import type { ChladniPlayerHandle, ChladniPresentationStatus } from "@duka/chladni/player";
 import navigationPreset from "../../data/navigation.chladni.json";
+import type { ReportArtwork } from "./useNavigationPresentation";
 
 export interface NavigationChladniProps {
   open: boolean;
+  showArtwork: boolean;
   dialog: RefObject<HTMLElement | null>;
+  reportArtwork: ReportArtwork;
+  selectCheckedInLook: (selected: boolean) => void;
+  replaceArtwork: () => void;
 }
 
 export const NavigationPlayer = lazy(async () => {
@@ -13,11 +18,15 @@ export const NavigationPlayer = lazy(async () => {
   return { default: ChladniPlayer };
 });
 
-class ChladniErrorBoundary extends Component<{ children: ReactNode; fallback: ReactNode }> {
+class ChladniErrorBoundary extends Component<{ children: ReactNode; fallback: ReactNode; onFailure?: () => void }> {
   state = { failed: false };
 
   static getDerivedStateFromError() {
     return { failed: true };
+  }
+
+  componentDidCatch() {
+    this.props.onFailure?.();
   }
 
   render() {
@@ -25,20 +34,28 @@ class ChladniErrorBoundary extends Component<{ children: ReactNode; fallback: Re
   }
 }
 
-export function DeferredChladni({ children, fallback = null }: { children: ReactNode; fallback?: ReactNode }) {
+export function DeferredChladni({ children, fallback = null, onFailure }: {
+  children: ReactNode;
+  fallback?: ReactNode;
+  onFailure?: () => void;
+}) {
   return (
-    <ChladniErrorBoundary fallback={fallback}>
+    <ChladniErrorBoundary fallback={fallback} onFailure={onFailure}>
       <Suspense fallback={null}>{children}</Suspense>
     </ChladniErrorBoundary>
   );
 }
 
-export function useNavigationArtwork({ open, dialog }: NavigationChladniProps) {
+export function useNavigationArtwork({ open, showArtwork, dialog, reportArtwork }: NavigationChladniProps) {
   const [available, setAvailable] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [started, setStarted] = useState(false);
   const pointer = useRef<ChladniPlayerHandle>(null);
-  const active = open && available;
+  const active = open && showArtwork && available;
+
+  const onStatusChange = useCallback((status: ChladniPresentationStatus) => {
+    reportArtwork(status, () => pointer.current?.present() ?? false);
+  }, [reportArtwork]);
 
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -56,8 +73,11 @@ export function useNavigationArtwork({ open, dialog }: NavigationChladniProps) {
   }, []);
 
   useEffect(() => {
+    if (available) setStarted(true);
+  }, [available]);
+
+  useEffect(() => {
     if (!active || !dialog.current) return;
-    setStarted(true);
     const element = dialog.current;
     const move = (event: PointerEvent) => {
       if (
@@ -79,16 +99,22 @@ export function useNavigationArtwork({ open, dialog }: NavigationChladniProps) {
     };
   }, [active, dialog]);
 
-  return { active, started, reducedMotion, pointer };
+  return { active, available, started, reducedMotion, pointer, onStatusChange };
 }
 
 export default function NavigationChladni(props: NavigationChladniProps) {
-  const { active, started, pointer } = useNavigationArtwork(props);
+  const { active, available, started, pointer, onStatusChange } = useNavigationArtwork(props);
+  const { selectCheckedInLook } = props;
+  useLayoutEffect(() => {
+    selectCheckedInLook(true);
+    return () => selectCheckedInLook(false);
+  }, [selectCheckedInLook]);
   return (
-    <div className="navigation-artwork" aria-hidden="true">
+    <div className="navigation-artwork" aria-hidden="true" data-show-artwork={props.showArtwork}>
       {started && (
-        <DeferredChladni>
-          <NavigationPlayer configuration={navigationPreset} active={active} ref={pointer} />
+        <DeferredChladni onFailure={() => onStatusChange("unavailable")}>
+          <NavigationPlayer configuration={navigationPreset} active={active} prepare={available}
+            onStatusChange={onStatusChange} ref={pointer} />
         </DeferredChladni>
       )}
     </div>

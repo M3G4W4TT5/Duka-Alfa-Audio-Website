@@ -1,4 +1,4 @@
-import { lazy, useCallback, useEffect, useRef, useState } from "react";
+import { lazy, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { parseConfiguration, type Configuration } from "@duka/chladni/player";
 import type { ChladniEditorHandle } from "@duka/chladni/editor";
@@ -41,7 +41,7 @@ function readSavedLook(): { saved: SavedLook; message: string } {
 }
 
 export default function NavigationChladniTest(props: NavigationChladniProps) {
-  const { active, started, reducedMotion, pointer } = useNavigationArtwork(props);
+  const { active, available, started, reducedMotion, pointer, onStatusChange } = useNavigationArtwork(props);
   const [session, setSession] = useState(readSavedLook);
   const [editing, setEditing] = useState(false);
   const [initialPreset, setInitialPreset] = useState<unknown>();
@@ -55,6 +55,12 @@ export default function NavigationChladniTest(props: NavigationChladniProps) {
     editor.current = handle;
     pointer.current = handle;
   }, [pointer]);
+
+  const { selectCheckedInLook, replaceArtwork } = props;
+  useLayoutEffect(() => {
+    selectCheckedInLook(!locked && !editing);
+    return () => selectCheckedInLook(false);
+  }, [selectCheckedInLook, locked, editing]);
 
   const saveLook = useCallback((next: SavedLook, status: string) => {
     try {
@@ -92,6 +98,7 @@ export default function NavigationChladniTest(props: NavigationChladniProps) {
     const width = props.dialog.current?.clientWidth ?? window.innerWidth;
     const profile = width < preset.framing.breakpoint ? "mobile" : "desktop";
     const view = preset.framing[profile].enabled ? profile : "window";
+    replaceArtwork();
     setInitialPreset({ ...preset, editor: { ...preset.editor, view, editCrop: false } });
     setEditing(true);
     setSession({ saved, message: "" });
@@ -104,6 +111,7 @@ export default function NavigationChladniTest(props: NavigationChladniProps) {
     }
     try {
       const locked = editor.current.capturePreset();
+      replaceArtwork();
       saveLook({ locked }, "Previewing the locked look.");
       setEditing(false);
     } catch (error) {
@@ -127,9 +135,10 @@ export default function NavigationChladniTest(props: NavigationChladniProps) {
 
   return (
     <>
-      <div className="navigation-artwork" aria-hidden="true">
+      <div className="navigation-artwork" aria-hidden="true" data-show-artwork={props.showArtwork}>
         {started && (
-          <DeferredChladni key={editing ? "editor" : "player"} fallback={editing && outlet ? createPortal(
+          <DeferredChladni key={editing ? "editor" : "player"} onFailure={() => onStatusChange("unavailable")}
+            fallback={editing && outlet ? createPortal(
             <p className="navigation-editor-error" role="status">
               The editor could not load. Reopen the page to try again.
             </p>, outlet,
@@ -139,11 +148,14 @@ export default function NavigationChladniTest(props: NavigationChladniProps) {
                 layout="container"
                 initialPreset={initialPreset}
                 active={active}
+                prepare={available}
+                onStatusChange={onStatusChange}
                 controlsOutlet={outlet}
                 ref={attachEditor}
               />
             ) : (
-              <NavigationPlayer configuration={locked ?? navigationPreset} active={active} ref={pointer} />
+              <NavigationPlayer configuration={locked ?? navigationPreset} active={active} prepare={available}
+                onStatusChange={onStatusChange} ref={pointer} />
             )}
           </DeferredChladni>
         )}
@@ -161,6 +173,7 @@ export default function NavigationChladniTest(props: NavigationChladniProps) {
                   {locked && <button type="button" onClick={exportLocked}>Export locked preset</button>}
                   <button type="button" onClick={() => {
                     primaryAction.current?.focus();
+                    if (editing || locked) replaceArtwork();
                     setEditing(false);
                     saveLook({}, "Previewing the website look.");
                   }}>
