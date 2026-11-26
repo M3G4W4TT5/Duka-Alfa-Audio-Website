@@ -12,13 +12,17 @@ Keep `PUBLIC_SANITY_PROJECT_ID` unset, `PUBLIC_CONTACT_FORM_READY=0` and `CONTAC
 
 ### Navigation artwork
 
-The navigation player uses `src/data/navigation.chladni.json` and the pinned `@duka/chladni` release in `vendor/`. Run `npm run dev -- --host 127.0.0.1 --port 4340` and open `/?chladni=test`. Open the menu, choose **Edit look**, then open **Controls**. Select Desktop or Mobile under **View** and enable **Edit crop** to adjust the framing in the overview. Keep **Use this crop on the website** enabled for each profile you want the player to use.
+The navigation player uses `src/data/navigation.chladni.json` and the pinned `@duka/chladni` release in `vendor/`. Run `npm run dev -- --host 127.0.0.1 --port 4340` and open `/?chladni=test`. Open the menu and choose **Edit look**. Once the artwork appears, open **Controls**. Select Desktop or Mobile under **View** and enable **Edit crop** to adjust the framing in the overview. Keep **Use this crop on the website** enabled for each profile you want the player to use.
 
-Choose **Lock & preview** to play the captured look in the menu. Drafts are saved in the current browser when closing the menu or leaving the page. Under **Preset**, choose **Export locked preset** to download `navigation.chladni.json`. Replace the checked-in preset with that export to share the look in the next build. **Restore website look** clears the draft and the lock in this browser.
+Choose **Lock & preview** to play the captured look in the menu. Drafts are saved in the current browser when closing the menu or leaving the page. Reload the test URL to reopen the same lock on that origin. Visitors opening the ordinary URL get the checked-in look. Under **Preset**, choose **Export locked preset** to download `navigation.chladni.json`. Replace `src/data/navigation.chladni.json` with that export and commit it to share the look in the next build. **Restore website look** clears the draft and the lock in this browser.
 
 `npm run build:chladni-preview` creates a local test-capable build for `npm run preview`. Cloudflare Pages uses its usual `npm run build` command and includes the editor only when its built-in `CF_PAGES_BRANCH` is `staging`. Both test-capable builds require `?chladni=test`. A standard local build and other Pages branches contain only the player.
 
-`npm run dev:chladni` uses the adjacent simulator workspace and watches its source exports. Install dependencies in both checkouts before using this mode. Set the process environment variable `CHLADNI_SOURCE_PATH` to use another copy of that workspace. The normal dev command and all builds resolve the pinned tarball. To update that release, copy a new versioned simulator tarball to `vendor/` and install it with `npm install ./vendor/duka-chladni-VERSION.tgz`. Commit the new tarball and lockfile together and remove the superseded tarball.
+`npm run dev:chladni -- --host 127.0.0.1 --port 4340` uses the adjacent simulator workspace and watches its source exports. Install dependencies in both checkouts before using this mode. Set `CHLADNI_SOURCE_PATH` to use another copy of the simulator workspace. The normal dev command and all builds resolve the pinned tarball. A site checkout needs only `npm ci` to install it from the repository.
+
+To ship simulator changes, run `npm version patch --no-git-tag-version` and `npm pack --ignore-scripts` in the simulator workspace, choosing a different version increment when appropriate. Copy the resulting tarball to the site's `vendor/` directory and run `npm install ./vendor/duka-chladni-VERSION.tgz` from the site checkout with the actual filename. Remove the superseded tarball. Test the intended look with the pinned release, then commit the tarball replacement, both npm manifests and the matching preset in one site commit. To roll back that pair locally, run `git revert <release-commit>` and `npm ci`.
+
+Run `npm run check:chladni` after installing or changing the release. It checks the tarball against the npm lockfile and inspects the emitted player and editor assets for local, main, regular preview and staging builds. Run it again after a rollback.
 
 ## Stage boundaries
 

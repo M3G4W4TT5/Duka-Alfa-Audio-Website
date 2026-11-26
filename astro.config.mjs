@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 const siteRoot = fileURLToPath(new URL('.', import.meta.url));
 
 function chladniNavigation() {
+  let workingSource;
   return {
     name: 'duka-chladni-navigation',
     config(_config, { command, mode }) {
@@ -28,6 +29,7 @@ function chladniNavigation() {
         for (const entry of ['./player', './editor']) {
           alias[`@duka/chladni/${entry.slice(2)}`] = resolve(source, exports[entry]);
         }
+        workingSource = source;
         server = { fs: { allow: [siteRoot, source] } };
       }
 
@@ -36,6 +38,9 @@ function chladniNavigation() {
         optimizeDeps: { exclude: ['@duka/chladni'] },
         server,
       };
+    },
+    configureServer(server) {
+      if (workingSource) server.watcher.add(resolve(workingSource, 'src'));
     },
   };
 }

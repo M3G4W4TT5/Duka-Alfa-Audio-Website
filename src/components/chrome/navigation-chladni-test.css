@@ -76,6 +76,15 @@
   z-index: 0;
 }
 
+/* The editor hides its stage until the initial preset is ready to edit. */
+.navigation-overlay:has(.chladni-container .plate-stage[style*="visibility: hidden"]) .navigation-editor-controls {
+  visibility: hidden;
+}
+
+.navigation-artwork .chladni-container {
+  background: transparent;
+}
+
 .navigation-artwork .chladni-container .plate-title {
   top: calc(var(--header-height) + 0.35rem);
   left: var(--page-gutter);

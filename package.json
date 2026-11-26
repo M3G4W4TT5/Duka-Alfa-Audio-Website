@@ -12,6 +12,7 @@
     "build:chladni-preview": "astro build --mode chladni-preview",
     "preview": "astro preview",
     "check": "astro check && tsc --noEmit -p tsconfig.functions.json && tsc --noEmit -p studio/tsconfig.json",
+    "check:chladni": "node scripts/check-chladni-release.mjs",
     "dev:pages": "wrangler pages dev dist --compatibility-date=2026-09-28",
     "studio:dev": "npm run dev -w studio",
     "studio:build": "npm run build -w studio"
