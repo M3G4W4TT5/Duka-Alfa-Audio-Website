@@ -1,4 +1,4 @@
-import { Mail, Minus, Plus } from "lucide-react";
+import { Minus, Phone, Plus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { Service } from "../../data/types";
 import { navigation } from "../../data/navigation";
@@ -9,12 +9,11 @@ import "./header.css";
 interface Props {
   services: Pick<Service, "slug" | "title" | "parent">[];
   home?: boolean;
-  contactIconOnly?: boolean;
 }
 
 const blankImage = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
-export default function Header({ services, home = false, contactIconOnly = false }: Props) {
+export default function Header({ services, home = false }: Props) {
   const { open, showArtwork, still, close, toggleMenu, reportArtwork,
     stillImage, decodeStill, selectCheckedInLook, replaceArtwork, finishReveal } = useNavigationPresentation();
   const [hidden, setHidden] = useState(false);
@@ -46,7 +45,7 @@ export default function Header({ services, home = false, contactIconOnly = false
     if (!open) return;
     const background = Array.from(
       document.querySelectorAll<HTMLElement>(
-        "main, footer, .contact-fab, .skip",
+        "main, footer, .skip",
       ),
     );
     background.forEach((element) => {
@@ -122,11 +121,11 @@ export default function Header({ services, home = false, contactIconOnly = false
           />
         </a>
         <a
-          className={contactIconOnly ? "header-mail" : "button header-contact"}
+          className="header-contact"
           href="/contact/"
-          aria-label={contactIconOnly ? "Contact Duka Alfa Audio" : undefined}
+          aria-label="Contact Duka Alfa Audio"
         >
-          {contactIconOnly ? <Mail size={22} strokeWidth={1.5} aria-hidden="true" /> : "Get in Touch"}
+          <Phone size={22} strokeWidth={1.5} aria-hidden="true" />
         </a>
       </div>
       <div

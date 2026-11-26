@@ -1,33 +1,23 @@
 .site-footer {
-  padding-block: 3rem 2rem;
+  padding-block: 1.75rem 1.25rem;
   border-top: 1px solid var(--color-line);
 }
 .footer-top {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 0.75fr auto;
-  gap: 2rem;
-  padding-bottom: 2rem;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
 }
-.footer-top nav {
-  display: grid;
-  gap: 0.5rem;
-  align-content: start;
-}
-.footer-top nav a {
-  text-decoration: none;
-  width: fit-content;
-}
-.footer-top nav a:hover {
-  text-decoration: underline;
+.footer-brand {
+  justify-self: start;
 }
 .designer-credit {
   display: inline-flex;
   align-items: center;
-  align-self: start;
   justify-self: end;
   gap: 0.65rem;
   width: fit-content;
-  margin-top: 1.25rem;
   font-size: 0.65rem;
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -55,87 +45,43 @@
 }
 .footer-bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 1.2rem;
+  gap: 1.5rem;
   color: var(--color-muted);
   font-size: 0.75rem;
-}
-.footer-bottom div {
-  display: flex;
-  gap: 1.5rem;
 }
 .footer-bottom a {
   font-weight: 100;
 }
-.contact-fab {
-  position: fixed;
-  bottom: 1.3rem;
-  right: 1.3rem;
-  z-index: 30;
-  width: 50px;
-  height: 50px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--color-overlay);
-  border: 1px solid var(--color-line);
-  transition: transform var(--motion-fast);
-}
-.contact-fab:hover {
-  transform: translateY(-3px);
-}
-@media (max-width: 900px) {
+@media (max-width: 720px) {
+  .site-footer {
+    padding-block: 1.25rem 1rem;
+  }
   .footer-top {
-    grid-template-columns: 1.5fr 1fr 1fr;
-  }
-  .designer-credit {
-    grid-column: 1 / -1;
-    margin-top: 0;
-  }
-}
-@media (max-width: 700px) {
-  .footer-top {
-    grid-template-columns: 1fr 1fr;
-    text-align: center;
-  }
-  .footer-top nav {
+    grid-template-columns: 1fr;
     justify-items: center;
+    gap: 0.75rem;
   }
-  .footer-identity {
-    grid-column: 1 / -1;
-    justify-self: center;
-  }
+  .footer-brand,
   .designer-credit {
     justify-self: center;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
   }
 }
 
-.footer-identity {
-  display: grid;
-  justify-items: start;
-  gap: 1rem;
-  width: fit-content;
-}
-.example-2 {
+.footer-social {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
 }
-.example-2 .icon-content {
+.footer-social .icon-content {
   margin: 0 10px;
   position: relative;
 }
-.example-2 .tooltip {
+.footer-social .tooltip {
   position: absolute;
   top: -30px;
   left: 50%;
@@ -149,13 +95,13 @@
   transition: all 0.3s ease;
   pointer-events: none;
 }
-.example-2 .icon-content:hover .tooltip,
-.example-2 .icon-content:focus-within .tooltip {
+.footer-social .icon-content:hover .tooltip,
+.footer-social .icon-content:focus-within .tooltip {
   opacity: 1;
   visibility: visible;
   top: -50px;
 }
-.example-2 a {
+.footer-social a {
   position: relative;
   overflow: hidden;
   display: flex;
@@ -168,18 +114,18 @@
   background-color: #000;
   transition: all 0.3s ease-in-out;
 }
-.example-2 a:hover,
-.example-2 a:focus-visible {
+.footer-social a:hover,
+.footer-social a:focus-visible {
   box-shadow: 3px 2px 45px 0 rgb(0 0 0 / 12%);
   color: white;
 }
-.example-2 a svg {
+.footer-social a svg {
   position: relative;
   z-index: 1;
   width: 30px;
   height: 30px;
 }
-.example-2 .filled {
+.footer-social .filled {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -188,19 +134,19 @@
   background-color: #000;
   transition: all 0.3s ease-in-out;
 }
-.example-2 a:hover .filled,
-.example-2 a:focus-visible .filled {
+.footer-social a:hover .filled,
+.footer-social a:focus-visible .filled {
   height: 100%;
 }
-.example-2 a[data-social="whatsapp"] .filled,
-.example-2 a[data-social="whatsapp"] ~ .tooltip {
+.footer-social a[data-social="whatsapp"] .filled,
+.footer-social a[data-social="whatsapp"] ~ .tooltip {
   background-color: #128c7e;
 }
-.example-2 a[data-social="facebook"] .filled,
-.example-2 a[data-social="facebook"] ~ .tooltip {
+.footer-social a[data-social="facebook"] .filled,
+.footer-social a[data-social="facebook"] ~ .tooltip {
   background-color: #3b5998;
 }
-.example-2 a[data-social="instagram"] .filled,
-.example-2 a[data-social="instagram"] ~ .tooltip {
+.footer-social a[data-social="instagram"] .filled,
+.footer-social a[data-social="instagram"] ~ .tooltip {
   background: linear-gradient(45deg, #405de6, #5b51db, #b33ab4, #c135b4, #e1306c, #fd1f1f);
 }

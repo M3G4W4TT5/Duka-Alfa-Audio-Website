@@ -112,7 +112,7 @@ p.prose.muted {
 p.eyebrow.muted {
   font-weight: 100;
 }
-/* Content actions; navbar contact and form submit retain .button. */
+/* Content actions use an underline, while form submit uses .button. */
 .menu__link {
   display: inline-flex;
   align-items: center;

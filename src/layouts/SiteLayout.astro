@@ -37,7 +37,7 @@ const menuServices = services
   </head>
   <body>
     <a href="#main" class="skip">Skip to content</a>
-    <Header services={menuServices} home={home} contactIconOnly={historyPage} client:load />
+    <Header services={menuServices} home={home} client:load />
     <main id="main" tabindex="-1"><slot /></main>
     {!historyPage && <Footer />}
   </body>

@@ -12,9 +12,6 @@
 .site-header.is-solid {
   background: var(--color-bg);
 }
-.site-header.has-open-navigation .header-bar {
-  background: linear-gradient(to bottom, #080808e6, #08080870);
-}
 .header-bar {
   position: relative;
   z-index: 2;
@@ -43,11 +40,7 @@
   width: 100%;
   height: auto;
 }
-.header-bar .header-contact {
-  justify-self: end;
-  white-space: nowrap;
-}
-.header-mail {
+.header-contact {
   justify-self: end;
   display: grid;
   place-items: center;
@@ -55,7 +48,7 @@
   height: 44px;
   transition: color var(--motion-fast);
 }
-.header-mail:hover {
+.header-contact:hover {
   color: var(--color-muted);
 }
 .navigation-overlay {
@@ -203,10 +196,6 @@
     width: min(32vw, 220px);
     justify-self: center;
   }
-  .header-bar .header-contact {
-    font-size: 0.65rem;
-    padding: 0.65rem 0.75rem;
-  }
   .overlay-content {
     grid-template-columns: 1fr;
     padding-top: 2rem;
@@ -231,10 +220,5 @@
   }
   .wordmark {
     width: 112px;
-  }
-  .header-bar .header-contact {
-    font-size: 0.58rem;
-    padding: 0.6rem 0.55rem;
-    letter-spacing: 0;
   }
 }

@@ -4,7 +4,7 @@ This file defines the current design for Duka Alfa Audio. Update the relevant se
 
 ## Visual direction
 
-Use a black background, white text, spacious layouts and large supplied photographs. Keep accents restrained. Content action links use white text with line-height 2 and a 2px underline that expands from the centre over 0.4 seconds on hover or keyboard focus. They have no box outline. Only navbar Get in Touch and contact-form Send Message retain transparent backgrounds and white outlines; hover reverses their foreground and background colours. Preserve supplied logo geometry, aspect ratios and lettering, including the Memory(One) footer credit.
+Use a black background, white text, spacious layouts and large supplied photographs. Keep accents restrained. Content action links use white text with line-height 2 and a 2px underline that expands from the centre over 0.4 seconds on hover or keyboard focus. They have no box outline. The contact form’s Send Message button has a transparent background and a white outline. Hover reverses its foreground and background colours. Preserve supplied logo geometry, aspect ratios and lettering, including the Memory(One) footer credit.
 
 Use shared tokens in `src/styles/tokens.css` for colours, spacing, typography and motion. Use existing responsive sizes and spacing unless a revision changes them. Photo crops respect individual focal points; reserve image dimensions to avoid layout shifts.
 
@@ -35,8 +35,8 @@ Use only [Lucide React](https://lucide.dev/guide/react) (`lucide-react`) for int
 | Purpose | Component |
 | --- | --- |
 | Selected links | `ArrowUpRight` |
-| Mail and contact | `Mail` |
-| Phone numbers where an icon is useful | `Phone` |
+| Email addresses where an icon is useful | `Mail` |
+| Header contact link and phone numbers where an icon is useful | `Phone` |
 | Previous/next and equipment disclosures | `ChevronLeft`, `ChevronRight` |
 | Services disclosure | `Plus`, `Minus` |
 | Homepage scroll cue | `ChevronDown` |
@@ -49,15 +49,15 @@ Use named imports. Render icons statically in Astro presentation components; use
 
 ### Header and navigation
 
-Place the original white mark on the left, the wordmark in the centre and Get in Touch on the right. The mark toggles a fading black navigation overlay. Use About Us for the company navigation link. Services expands inside navigation; group Bespoke Home Audio within Installations.
+Place the original white mark on the left, the wordmark in the centre and a bare phone icon linking to Contact on the right. The mark toggles the fading navigation overlay. Use About Us for the company navigation link. Services expands inside navigation and groups Bespoke Home Audio within Installations.
 
-Show the Chladni sand pattern behind the whole open menu, with the desktop pattern composed to the right of the links and a dedicated portrait crop for narrow screens. Prepare the first frame while the menu is closed and pause the simulation after preparation. Reveal the menu with the live pattern or a matching still. When the live pattern is ready, draw the same crop behind the still before fading it out. Use solid black for reduced motion and when neither artwork presentation is available. Keep the links and header legible as menu content scrolls. Mouse and pen movement can light the live pattern.
+Show the Chladni sand pattern behind the whole open menu, including the transparent header bar. Compose the desktop pattern to the right of the links and use a dedicated portrait crop for narrow screens. Prepare the first frame while the menu is closed and pause the simulation after preparation. Reveal the menu with the live pattern or a matching still. When the live pattern is ready, draw the same crop behind the still before fading it out. Use solid black for reduced motion and when neither artwork presentation is available. Keep the links and header legible as menu content scrolls. Mouse and pen movement can light the live pattern.
 
-Keep the header visible through the homepage hero. Beyond the hero, downward scrolling hides the entire header and upward scrolling reveals it. On supporting pages, use the same directional scroll behaviour. Mouse focus does not hold the header open; visible keyboard focus keeps its control accessible. Keep a fixed circular mail/contact link at the bottom right.
+Keep the header visible through the homepage hero. Beyond the hero, downward scrolling hides the entire header and upward scrolling reveals it. On supporting pages, use the same directional scroll behaviour. Visible keyboard focus keeps the header controls accessible.
 
 ### Footer
 
-Use a compact footer with three circular social links (WhatsApp, Facebook and Instagram) beneath the supplied logo. Each is 50px with a 30px brand mark, an upward colour fill and a matching tooltip on hover or keyboard focus. Use WhatsApp green, Facebook blue and the supplied Instagram gradient. Split navigation into About Us/Stories/Equipment and Partners/Contact columns; place the second column where the former social text links appeared. Retain the Memory(One) design credit and legal links. Centre all footer contents on mobile.
+Use a compact footer with the supplied full Duka Alfa Audio logo on the left, WhatsApp, Facebook and Instagram links in the centre and the Memory(One) design credit on the right. Each social link is 50px with a 30px brand mark, an upward colour fill and a matching tooltip on hover or keyboard focus. Use WhatsApp green, Facebook blue and the supplied Instagram gradient. Centre Privacy Notice and Legal Information below the main row. Stack and centre the three groups on narrow screens.
 
 ### Clickable cards
 
@@ -99,7 +99,7 @@ Contact sections omit the Get in Touch eyebrow. The homepage has no divider betw
 
 The About Us page opens directly on the 2008–2026 company history. Lay it out as a continuous horizontal sequence on landscape screens from 64rem wide. Use a vertical reading order on narrow and portrait screens. On desktop, set each year above its story and alternate text columns with inset and full-bleed photographs. Reduce the year size on shorter landscape screens. On mobile, introduce the story before the year. Set the years and titles in white and the lightweight body copy in soft grey on black. Use existing event photography for the review.
 
-The About header uses a bare envelope icon in the upper right linking to Contact. The timeline ends at the final photograph. Omit the footer, floating contact shortcut and inline contact links on this page.
+The About header uses the shared phone icon linking to Contact. The timeline ends at the final photograph. Omit the footer and inline contact links on this page.
 
 Stagger the year digits and headline lines upwards through masks. Fade in the body copy line by line. Reveal inset photographs from the lower edge or corner and let the image travel slightly inside its frame on the reading axis. Keep the timeline in a single expanded view. Reduced motion shows the complete text and images immediately.
 
