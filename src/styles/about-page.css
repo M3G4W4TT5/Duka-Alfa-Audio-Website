@@ -1,3 +1,309 @@
-.about-page-section {
-  padding-block: 2rem;
+.history {
+  --inset: clamp(1rem, 4.4vw, 4rem);
+  --space: clamp(4rem, 11vw, 9rem);
+  --reveal-ease: cubic-bezier(.625, .05, 0, 1);
+  position: relative;
+  color: var(--color-ink);
+  background: var(--color-bg);
+  overflow: clip;
+}
+
+.history-track,
+.history-chapter,
+.history-lead {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-track {
+  gap: var(--space);
+  padding-block: calc(var(--header-height) + clamp(3.5rem, 10.6svh, 6rem)) var(--space);
+}
+
+.history-chapter {
+  gap: var(--space);
+}
+
+.history-lead,
+.history-note {
+  width: min(100%, 44rem);
+  padding-inline: var(--inset);
+  margin-inline: auto;
+}
+
+.history-lead {
+  gap: clamp(3.5rem, 13.5svh, 8rem);
+}
+
+.history-year {
+  container-type: inline-size;
+  position: relative;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0;
+  order: 1;
+}
+
+.history-year-mask {
+  display: flex;
+  overflow: clip;
+  font-size: 69cqw;
+  font-variant-numeric: lining-nums tabular-nums;
+  line-height: .85;
+}
+
+.history-year-slot {
+  display: flex;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.history-digit {
+  transform: scaleX(.53);
+}
+
+.history-title,
+.history-body {
+  position: relative;
+}
+
+.history-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 6.1vw, 3.15rem);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+  text-transform: uppercase;
+}
+
+.history-body {
+  margin: clamp(1.5rem, 5svh, 2.65rem) 0 0;
+  color: var(--color-ink);
+  font-size: .9375rem;
+  line-height: 1.55;
+}
+
+.history-copy .menu__link {
+  margin-top: 1.35rem;
+}
+
+.history-photo {
+  position: relative;
+  margin: 0 auto;
+  width: min(calc(100% - 2 * var(--inset)), 36rem);
+  aspect-ratio: 480 / 674;
+}
+
+.history-photo--inset {
+  width: min(58%, 24rem);
+  margin-inline: var(--inset) auto;
+  aspect-ratio: 4 / 5;
+}
+
+.history-photo--full {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.history-photo-mask,
+.history-photo-pan {
+  position: absolute;
+  inset: 0;
+}
+
+.history-photo-mask {
+  overflow: hidden;
+  transform-origin: 0 100%;
+}
+
+.history[data-motion] .history-photo-pan {
+  inset: -12.5% 0;
+  transform: translate3d(0, var(--pan, 0%), 0);
+}
+
+/* Each mask holds one actual line of type, including after a font or size change. */
+.history-line-mask,
+.history-line {
+  display: block;
+}
+
+.history-line-mask {
+  overflow: clip;
+  /* Keep accents and descenders inside a tight display line. */
+  padding-block: .07em;
+  margin-block: -.07em;
+}
+
+.history .sr-only {
+  user-select: none;
+}
+
+.history[data-preparing] [data-reveal] {
+  opacity: 0;
+}
+
+.history[data-motion] [data-reveal]:not([data-shown]) :is(.history-year-slot, .history-title-line) {
+  transform: translateY(100%);
+}
+
+.history[data-motion] [data-reveal]:not([data-shown]) .history-body-line {
+  opacity: 0;
+}
+
+.history[data-motion] [data-shown] :is(.history-year-slot, .history-title-line) {
+  transition: transform .8s var(--reveal-ease) calc(var(--order) * 50ms);
+}
+
+.history[data-motion] [data-shown] .history-body-line {
+  transition: opacity .8s var(--reveal-ease) calc(var(--order) * 50ms);
+}
+
+.history[data-motion] .history-photo:not(.history-photo--full) .history-photo-mask {
+  clip-path: inset(40% 40% 0 0);
+  transform: scale(.8);
+}
+
+.history[data-motion] .history-photo[data-shown]:not(.history-photo--full) .history-photo-mask {
+  clip-path: inset(0);
+  transform: scale(1);
+  transition: clip-path .9s var(--reveal-ease), transform .9s var(--reveal-ease);
+}
+
+.history[data-motion] .history-photo[data-opening]:not([data-shown]) .history-photo-mask {
+  clip-path: inset(100% 0 0);
+  transform: none;
+}
+
+.history[data-motion] .history-photo[data-opening][data-shown] .history-photo-mask {
+  clip-path: inset(0);
+  transform: none;
+  transition: clip-path .85s var(--reveal-ease);
+}
+
+html:has(.history[data-horizontal]) {
+  scrollbar-width: none;
+}
+
+html:has(.history[data-horizontal])::-webkit-scrollbar {
+  display: none;
+}
+
+body:has(.history[data-horizontal]) .site-header.is-solid:not(.has-open-navigation) {
+  background: transparent;
+}
+
+/* The unenhanced document is a continuous vertical history. */
+.history[data-horizontal] {
+  --inset: clamp(4rem, 8.2vw, 7.5rem);
+  --space: clamp(5rem, 11.1vw, 10rem);
+  --top: max(calc(var(--header-height) + .75rem), 14.2svh);
+  --bottom: clamp(2.5rem, 10.9svh, 7rem);
+  --lead-width: min(46.3vw, 79svh, 44rem);
+  height: 100svh;
+  overflow: auto hidden;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  outline-offset: -3px;
+}
+
+.history[data-horizontal]::-webkit-scrollbar {
+  display: none;
+}
+
+.history[data-horizontal] .history-track,
+.history[data-horizontal] .history-chapter {
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+}
+
+.history[data-horizontal] .history-track {
+  width: max-content;
+  padding: 0 var(--inset);
+}
+
+.history[data-horizontal] .history-chapter,
+.history[data-horizontal] :is(.history-lead, .history-note, .history-photo) {
+  flex: none;
+}
+
+.history[data-horizontal] :is(.history-lead, .history-note) {
+  padding: var(--top) 0 var(--bottom);
+  margin: 0;
+}
+
+.history[data-horizontal] .history-lead {
+  width: var(--lead-width);
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.history[data-horizontal] .history-year {
+  flex: none;
+  order: 0;
+}
+
+.history[data-horizontal] .history-title {
+  font-size: clamp(2rem, min(3.55vw, 6svh), 3.2rem);
+}
+
+.history[data-horizontal] .history-note {
+  width: clamp(21rem, 31vw, 28rem);
+}
+
+.history[data-horizontal] .history-chapter:not(:first-child) .history-note {
+  align-self: end;
+}
+
+.history[data-horizontal] .history-photo {
+  margin: 0;
+  align-self: center;
+}
+
+.history[data-horizontal] .history-photo--portrait {
+  align-self: start;
+  height: calc(100% - var(--top) - var(--bottom));
+  width: auto;
+  margin-top: var(--top);
+}
+
+.history[data-horizontal] .history-note + .history-photo--portrait {
+  margin-left: calc(-.25 * var(--space));
+}
+
+.history[data-horizontal] .history-photo--inset {
+  align-self: end;
+  height: min(43svh, 27rem);
+  width: auto;
+  margin-bottom: var(--bottom);
+}
+
+.history[data-horizontal] .history-photo--full {
+  width: 100vw;
+  height: 100%;
+}
+
+.history[data-horizontal] .history-chapter:last-child .history-photo--full {
+  margin-right: calc(-1 * var(--inset));
+}
+
+.history[data-horizontal][data-motion] .history-photo-pan {
+  inset: 0 -12.5%;
+  transform: translate3d(var(--pan, 0%), 0, 0);
+}
+
+@media (max-height: 42rem) {
+  .history[data-horizontal] {
+    --lead-width: min(52vw, 39rem);
+    --bottom: 5svh;
+  }
+  .history[data-horizontal] .history-year-mask {
+    width: min(100%, 70svh);
+    font-size: min(69cqw, 48svh);
+  }
+  .history[data-horizontal] .history-body {
+    margin-top: 1.25rem;
+  }
 }

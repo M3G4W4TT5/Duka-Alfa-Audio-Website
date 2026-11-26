@@ -14,3 +14,4 @@ export {
   site,
   stories,
 } from "../data/site";
+export { history } from "../data/history";

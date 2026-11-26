@@ -1,23 +1,64 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import PageIntro from "../../components/ui/PageIntro.astro";
+import HistoryCopy from "../../components/about/HistoryCopy.astro";
+import Photo from "../../components/media/Photo.astro";
 import Button from "../../components/ui/Button.astro";
+import { history } from "../../lib/content";
 import "../../styles/about-page.css";
-import { site } from "../../lib/content";
 ---
 
-<SiteLayout title="Discover Duka">
-  <PageIntro
-    title="A passion for sound."
-    intro="From a few used speakers in 2008 to the stages and spaces we work with today."
-  />
-  <section class="about-page-section section wrap">
-    <div class="prose">{site.about.map((paragraph) => <p>{paragraph}</p>)}</div>
-  </section>
-  <section class="about-page-section section wrap">
-    <h2>A story with people at its heart.</h2><p class="prose muted">
-      The founder’s story, family archive and personal milestones will form the
-      next design pass for this page.
-    </p><Button href="/contact/" label="Get in Touch" />
-  </section>
+<SiteLayout
+  title="About Us"
+  description="From a few used speakers in 2008 to eighteen years of live sound. Discover the people, places and nights in Duka Alfa Audio’s history."
+>
+  <h1 class="sr-only">About Duka Alfa Audio</h1>
+  <div class="history" role="region" aria-label="Company history, 2008 to 2026" data-history>
+    <div class="history-track">
+      {history.map((chapter, index) => (
+        <section class="history-chapter" aria-labelledby={`year-${chapter.year}`}>
+          <div class="history-lead">
+            <h2 class="history-year" id={`year-${chapter.year}`} data-reveal="year">
+              <span class="sr-only">{chapter.year}</span>
+              <span class="history-year-mask" aria-hidden="true">
+                {String(chapter.year).split("").map((digit, i) => (
+                  <span class="history-year-slot" style={`--order: ${i}`}>
+                    <span class="history-digit">{digit}</span>
+                  </span>
+                ))}
+              </span>
+            </h2>
+            <div class="history-copy">
+              <HistoryCopy title={chapter.title} text={chapter.text} />
+              {index === history.length - 1 && <Button href="/contact/" label="Get in Touch" />}
+            </div>
+          </div>
+          {chapter.note && (
+            <div class="history-note">
+              <HistoryCopy {...chapter.note} />
+            </div>
+          )}
+          <figure class={`history-photo history-photo--${chapter.layout}`} data-reveal="photo">
+            <div class="history-photo-mask">
+              <div class="history-photo-pan">
+                <Photo
+                  photo={chapter.photo}
+                  eager={index === 0}
+                  sizes={chapter.layout === "full"
+                    ? "125vw"
+                    : "(min-width: 64rem) and (orientation: landscape) 65vh, (min-width: 46rem) 50rem, 100vw"}
+                />
+              </div>
+            </div>
+          </figure>
+        </section>
+      ))}
+    </div>
+  </div>
 </SiteLayout>
+
+<script>
+  import { mountHistory } from "../../components/about/history";
+
+  const timeline = document.querySelector<HTMLElement>("[data-history]");
+  if (timeline) mountHistory(timeline);
+</script>

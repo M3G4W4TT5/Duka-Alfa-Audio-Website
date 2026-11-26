@@ -94,7 +94,9 @@ The Services overview at `/services/` lists all five services using the existing
 
 Contact sections omit the Get in Touch eyebrow. The homepage has no divider between partners and contact. On desktop align the introductory heading with the top of the Name/Email input borders; on mobile retain stacked reflow. The Contact page starts directly with this contact section and omits the separate page introduction and divider.
 
-The company page omits its introductory eyebrow and uses smaller gaps around its body sections.
+The About Us page opens directly on the 2008–2026 company history. Lay it out as a continuous horizontal sequence on landscape screens from 64rem wide. Use a vertical reading order on narrow and portrait screens. On desktop, set each oversized year above its story and alternate text columns with inset and full-bleed photographs. On mobile, introduce the story before its oversized year. Use the site's black background, white FK Grotesk Neue type and existing event photography for the review.
+
+Stagger the year digits and headline lines upwards through masks. Fade in the body copy line by line. Reveal inset photographs from the lower edge or corner and let the image travel slightly inside its frame on the reading axis. Keep the timeline in a single expanded view. Reduced motion shows the complete text and images immediately.
 
 Use shared layouts for service details, company introduction, stories overview and cases, equipment, partners, contact and legal information. Keep enquiry actions clear. Forms expose their actual availability and validation state; operational enablement is managed outside this design specification.
 
