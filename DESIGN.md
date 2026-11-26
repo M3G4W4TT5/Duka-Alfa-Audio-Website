@@ -10,12 +10,13 @@ Use shared tokens in `src/styles/tokens.css` for colours, spacing, typography an
 
 ## Typography
 
-Use locally hosted FK Grotesk Neue from `public/fonts/` throughout the interface. Keep text as HTML.
+Use locally hosted fonts from `public/fonts/`. FK Grotesk Neue is the site’s default typeface. Keep text as HTML.
 
 | Text role | Font | CSS weight |
 | --- | --- | --- |
 | H1 | FK Grotesk Neue Black | 900 |
 | H2 | FK Grotesk Neue Bold | 700 |
+| About Us timeline years | FK Grotesk Bold | 700 |
 | H3 | FK Grotesk Neue Medium | 500 |
 | Body text and paragraphs | FK Grotesk Neue Regular | 400 |
 | Button text, including links styled as buttons | FK Grotesk Neue Light | 300 |
@@ -94,7 +95,7 @@ The Services overview at `/services/` lists all five services using the existing
 
 Contact sections omit the Get in Touch eyebrow. The homepage has no divider between partners and contact. On desktop align the introductory heading with the top of the Name/Email input borders; on mobile retain stacked reflow. The Contact page starts directly with this contact section and omits the separate page introduction and divider.
 
-The About Us page opens directly on the 2008–2026 company history. Lay it out as a continuous horizontal sequence on landscape screens from 64rem wide. Use a vertical reading order on narrow and portrait screens. On desktop, set each oversized year above its story and alternate text columns with inset and full-bleed photographs. On mobile, introduce the story before its oversized year. Use the site's black background, white FK Grotesk Neue type and existing event photography for the review.
+The About Us page opens directly on the 2008–2026 company history. Lay it out as a continuous horizontal sequence on landscape screens from 64rem wide. Use a vertical reading order on narrow and portrait screens. On desktop, set each oversized year above its story and alternate text columns with inset and full-bleed photographs. On mobile, introduce the story before its oversized year. Use the site's black background, white type and existing event photography for the review.
 
 Stagger the year digits and headline lines upwards through masks. Fade in the body copy line by line. Reveal inset photographs from the lower edge or corner and let the image travel slightly inside its frame on the reading axis. Keep the timeline in a single expanded view. Reduced motion shows the complete text and images immediately.
 

@@ -39,6 +39,7 @@
   container-type: inline-size;
   position: relative;
   margin: 0;
+  font-family: "FK Grotesk", var(--font-body);
   font-weight: 700;
   letter-spacing: 0;
   order: 1;
