@@ -48,6 +48,8 @@ Use named imports. Render icons statically in Astro presentation components; use
 
 Place the original white mark on the left, the wordmark in the centre and Get in Touch on the right. The mark toggles a fading black navigation overlay. Use About Us for the company navigation link. Services expands inside navigation; group Bespoke Home Audio within Installations.
 
+Show the Chladni sand pattern behind the whole open menu, with the desktop pattern composed to the right of the links and a dedicated portrait crop for narrow screens. Keep the links and header legible over the fixed artwork as menu content scrolls. Mouse and pen movement can light the pattern. Use solid black while the simulation is unavailable, loading or paused for reduced motion.
+
 Keep the header visible through the homepage hero. Beyond the hero, downward scrolling hides the entire header and upward scrolling reveals it. On supporting pages, use the same directional scroll behaviour. Mouse focus does not hold the header open; visible keyboard focus keeps its control accessible. Keep a fixed circular mail/contact link at the bottom right.
 
 ### Footer

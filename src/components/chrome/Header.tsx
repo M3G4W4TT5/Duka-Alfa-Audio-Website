@@ -2,6 +2,7 @@ import { Minus, Plus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { Service } from "../../data/types";
 import { navigation } from "../../data/navigation";
+import NavigationChladni from "#navigation-chladni";
 import "./header.css";
 
 interface Props {
@@ -49,13 +50,22 @@ export default function Header({ services, home = false }: Props) {
     document.body.classList.add("menu-open");
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        event.preventDefault();
         setOpen(false);
         toggle.current?.focus();
       }
       if (event.key !== "Tab") return;
       const items = Array.from(
-        root.current?.querySelectorAll<HTMLElement>("a, button, summary") ?? [],
-      ).filter((element) => element.getClientRects().length > 0);
+        root.current?.querySelectorAll<HTMLElement>(
+          "a[href], button, summary, input, select, textarea, [tabindex]",
+        ) ?? [],
+      ).filter((element) =>
+        element.tabIndex >= 0 &&
+        !element.matches(":disabled") &&
+        !element.closest("[inert]") &&
+        element.getClientRects().length > 0 &&
+        getComputedStyle(element).visibility === "visible",
+      );
       const first = items[0];
       const last = items.at(-1);
       if (event.shiftKey && document.activeElement === first) {
@@ -82,7 +92,7 @@ export default function Header({ services, home = false }: Props) {
       role={open ? "dialog" : undefined}
       aria-modal={open ? true : undefined}
       aria-label={open ? "Website navigation" : undefined}
-      className={`site-header ${hidden && !open ? "is-hidden" : ""} ${scrolled || open ? "is-solid" : ""}`}
+      className={`site-header ${hidden && !open ? "is-hidden" : ""} ${scrolled || open ? "is-solid" : ""} ${open ? "has-open-navigation" : ""}`}
     >
       <div className="header-bar">
         <button
@@ -91,7 +101,10 @@ export default function Header({ services, home = false }: Props) {
           aria-label={open ? "Close navigation" : "Open navigation"}
           aria-expanded={open}
           aria-controls="site-navigation"
-          onClick={() => setOpen(!open)}
+          onClick={() => {
+            toggle.current?.focus();
+            setOpen(!open);
+          }}
         >
           <img src="/identity/mark.svg" alt="" width="58" height="58" />
         </button>
@@ -113,40 +126,43 @@ export default function Header({ services, home = false }: Props) {
         inert={!open}
         aria-hidden={!open}
       >
-        <nav className="overlay-content" aria-label="Main navigation">
-          <div className="menu-links">
-            {navigation.slice(0, 2).map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
-            <details className="menu-services">
-              <summary>Services<Plus className="menu-expand" size={20} aria-hidden="true" /><Minus className="menu-collapse" size={20} aria-hidden="true" /></summary>
-              <div className="service-submenu">
-                {services.map((service) => (
-                  <a
-                    key={service.slug}
-                    className={service.parent ? "submenu-child" : ""}
-                    href={`/services/${service.slug}/`}
-                  >
-                    {service.title}
-                  </a>
-                ))}
-              </div>
-            </details>
-            {navigation.slice(2).map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <div className="menu-note">
-            <p className="eyebrow">Professional sound & lighting</p>
-            <p>
-              From live stages
-              <br />
-              to the spaces we share.
-            </p>
+        <NavigationChladni open={open} dialog={root} />
+        <nav className="navigation-scroll" aria-label="Main navigation">
+          <div className="overlay-content">
+            <div className="menu-links">
+              {navigation.slice(0, 2).map((item) => (
+                <a key={item.href} href={item.href}>
+                  {item.label}
+                </a>
+              ))}
+              <details className="menu-services">
+                <summary>Services<Plus className="menu-expand" size={20} aria-hidden="true" /><Minus className="menu-collapse" size={20} aria-hidden="true" /></summary>
+                <div className="service-submenu">
+                  {services.map((service) => (
+                    <a
+                      key={service.slug}
+                      className={service.parent ? "submenu-child" : ""}
+                      href={`/services/${service.slug}/`}
+                    >
+                      {service.title}
+                    </a>
+                  ))}
+                </div>
+              </details>
+              {navigation.slice(2).map((item) => (
+                <a key={item.href} href={item.href}>
+                  {item.label}
+                </a>
+              ))}
+            </div>
+            <div className="menu-note">
+              <p className="eyebrow">Professional sound & lighting</p>
+              <p>
+                From live stages
+                <br />
+                to the spaces we share.
+              </p>
+            </div>
           </div>
         </nav>
       </div>

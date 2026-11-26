@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "engine": "chladni-p1/1",
+  "settings": {
+    "background": "flat",
+    "vibration": true,
+    "svg": {
+      "enabled": false,
+      "stencil": true,
+      "artwork": false,
+      "shape": "fill",
+      "weight": 0.6,
+      "returnToStencil": false,
+      "returnSpeed": 1,
+      "size": 50,
+      "x": 0,
+      "y": 0,
+      "height": 0,
+      "opacity": 1,
+      "shadows": true
+    },
+    "backgroundMaterial": {
+      "colour": "#101011",
+      "finish": {
+        "metalness": 0,
+        "roughness": 0.8,
+        "reflections": 0.6
+      },
+      "texture": {
+        "kind": "smooth",
+        "strength": 0.65,
+        "scaleMm": 36,
+        "angle": 0,
+        "colourMix": 0
+      }
+    },
+    "logoMaterial": {
+      "colour": "#101011",
+      "finish": {
+        "metalness": 0,
+        "roughness": 0.8,
+        "reflections": 0.6
+      },
+      "texture": {
+        "kind": "smooth",
+        "strength": 0.65,
+        "scaleMm": 36,
+        "angle": 0,
+        "colourMix": 0
+      }
+    },
+    "materialLinks": {
+      "colour": true,
+      "finish": true,
+      "texture": true
+    },
+    "logoTextureAnchor": [
+      0,
+      0
+    ],
+    "reliefLighting": "solid",
+    "logoEffect": {
+      "kind": "off",
+      "coverage": "edges",
+      "colour": "#b978ff",
+      "widthMm": 0.4,
+      "opacity": 0.85,
+      "emission": 3.5,
+      "spill": 0.4
+    },
+    "logoSize": 50,
+    "logoHeight": 1,
+    "logoX": 0,
+    "logoY": 0,
+    "mode": "patterns",
+    "driveAxis": "vertical",
+    "patternPointerDisabled": true,
+    "minHz": 100,
+    "maxHz": 182,
+    "sandSpeed": 1.45,
+    "grainCount": 65536,
+    "gradient": [
+      {
+        "id": 0,
+        "position": 0,
+        "color": "#9b64f3"
+      },
+      {
+        "id": 1,
+        "position": 1,
+        "color": "#d16e42"
+      }
+    ],
+    "lights": [
+      {
+        "id": 1,
+        "position": "fixed",
+        "angle": 300,
+        "colorSource": "fixed",
+        "color": "#9b64f3",
+        "intensity": 0.95,
+        "elevation": 10.7,
+        "beamWidth": 133
+      },
+      {
+        "id": 2,
+        "position": "follow",
+        "angle": 120,
+        "colorSource": "fixed",
+        "color": "#d16e42",
+        "intensity": 0.28,
+        "elevation": 10.7,
+        "beamWidth": 133
+      }
+    ],
+    "strobe": {
+      "mode": "off",
+      "source": 1,
+      "angle": 315,
+      "color": "#f8f4ff",
+      "strength": 7,
+      "rate": 2,
+      "width": 70,
+      "flashes": 3,
+      "gap": 1000
+    },
+    "bloomStrength": 0.53,
+    "bloomRadius": 0.44,
+    "bloomFalloff": 0.35,
+    "bloomThreshold": 0.49,
+    "bloomGrit": 0.41,
+    "grainSize": 1.25
+  },
+  "start": {
+    "arrangement": "pattern",
+    "seed": 2050436257,
+    "pour": 0,
+    "drive": {
+      "hz": 1535,
+      "targetHz": 1535,
+      "filteredHz": 126,
+      "directHeight": 0.3170731707317073,
+      "guidePosition": 19,
+      "guideTarget": 19,
+      "travelPosition": 19,
+      "entryOffsetHz": 0
+    },
+    "pointer": {
+      "x": 0.48385416666666664,
+      "y": 0.8728557013118062
+    },
+    "followAngle": 120,
+    "lampTarget": 120,
+    "lights": [
+      {
+        "id": 1,
+        "hue": 0.4838541666666667,
+        "color": [
+          0.3277780980458375,
+          0.12743768042608497,
+          0.8962693533719567
+        ],
+        "pinnedColor": [
+          0.3277780980458375,
+          0.12743768042608497,
+          0.8962693533719567
+        ],
+        "pinnedWeight": 1
+      },
+      {
+        "id": 2,
+        "hue": 0.48385416666666664,
+        "color": [
+          0.6375968739867731,
+          0.15592646369776456,
+          0.054480276435339814
+        ],
+        "pinnedColor": [
+          0.6375968739867731,
+          0.15592646369776456,
+          0.054480276435339814
+        ],
+        "pinnedWeight": 1
+      }
+    ]
+  },
+  "framing": {
+    "breakpoint": 768,
+    "fit": "cover",
+    "window": null,
+    "desktop": {
+      "enabled": true,
+      "width": 1920,
+      "height": 1080,
+      "crop": {
+        "centerX": 0.34,
+        "centerY": 0.51,
+        "width": 1,
+        "height": 0.5625
+      }
+    },
+    "mobile": {
+      "enabled": true,
+      "width": 402,
+      "height": 874,
+      "crop": {
+        "centerX": 0.42,
+        "centerY": 0.51,
+        "width": 0.377162471395881,
+        "height": 0.82
+      }
+    }
+  },
+  "editor": {
+    "view": "desktop",
+    "editCrop": false,
+    "controlsOnly": true
+  },
+  "assets": {
+    "model": "duka-relief/v1",
+    "surfaces": "duka-surfaces/v1",
+    "svg": {
+      "type": "builtin",
+      "id": "duka-stencil/v1"
+    }
+  }
+}

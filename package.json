@@ -7,7 +7,9 @@
   ],
   "scripts": {
     "dev": "astro dev",
+    "dev:chladni": "astro dev --mode chladni-source",
     "build": "astro build",
+    "build:chladni-preview": "astro build --mode chladni-preview",
     "preview": "astro preview",
     "check": "astro check && tsc --noEmit -p tsconfig.functions.json && tsc --noEmit -p studio/tsconfig.json",
     "dev:pages": "wrangler pages dev dist --compatibility-date=2026-09-28",
@@ -16,6 +18,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^7.0.0",
+    "@duka/chladni": "file:vendor/duka-chladni-1.0.0.tgz",
     "@sanity/client": "^8.7.0",
     "astro": "^7.3.5",
     "lucide-react": "^1.51.0",
