@@ -17,7 +17,7 @@
 
 .history-track {
   gap: var(--space);
-  padding-block: calc(var(--header-height) + clamp(3.5rem, 10.6svh, 6rem)) var(--space);
+  padding-block-start: calc(var(--header-height) + clamp(3.5rem, 10.6svh, 6rem));
 }
 
 .history-chapter {
@@ -32,7 +32,7 @@
 }
 
 .history-lead {
-  gap: clamp(3.5rem, 13.5svh, 8rem);
+  gap: clamp(4.5rem, 15svh, 7.5rem);
 }
 
 .history-year {
@@ -48,7 +48,8 @@
 .history-year-mask {
   display: flex;
   overflow: clip;
-  font-size: 69cqw;
+  width: min(100%, 1.44em);
+  font-size: min(61cqw, 24rem);
   font-variant-numeric: lining-nums tabular-nums;
   line-height: .85;
 }
@@ -69,25 +70,33 @@
   position: relative;
 }
 
+.history-copy,
+.history-note {
+  overflow-x: clip;
+}
+
 .history-title {
+  /* Measure lines at their natural width before condensing the FK capitals. */
+  --title-scale: .62;
+  width: calc(100% / var(--title-scale));
   margin: 0;
-  font-size: clamp(2.2rem, 6.1vw, 3.15rem);
-  line-height: 1.02;
+  font-size: 2.875rem;
+  line-height: .94;
   font-weight: 500;
-  letter-spacing: -.035em;
+  letter-spacing: .075em;
   text-wrap: balance;
   text-transform: uppercase;
+  transform: scaleX(var(--title-scale));
+  transform-origin: left top;
 }
 
 .history-body {
-  margin: clamp(1.5rem, 5svh, 2.65rem) 0 0;
-  color: var(--color-ink);
-  font-size: .9375rem;
-  line-height: 1.55;
-}
-
-.history-copy .menu__link {
-  margin-top: 1.35rem;
+  margin: 2.5rem 0 0;
+  color: color-mix(in srgb, var(--color-ink) 64%, var(--color-bg));
+  font-size: max(14px, .8125rem);
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: .01em;
 }
 
 .history-photo {
@@ -125,9 +134,15 @@
 }
 
 /* Each mask holds one actual line of type, including after a font or size change. */
+.history-title > [aria-hidden],
+.history-body > [aria-hidden],
 .history-line-mask,
 .history-line {
   display: block;
+}
+
+.history-line {
+  white-space: nowrap;
 }
 
 .history-line-mask {
@@ -201,7 +216,7 @@ body:has(.history[data-horizontal]) .site-header.is-solid:not(.has-open-navigati
   --space: clamp(5rem, 11.1vw, 10rem);
   --top: max(calc(var(--header-height) + .75rem), 14.2svh);
   --bottom: clamp(2.5rem, 10.9svh, 7rem);
-  --lead-width: min(46.3vw, 79svh, 44rem);
+  --lead-width: min(49vw, 39.25rem);
   height: 100svh;
   overflow: auto hidden;
   scrollbar-width: none;
@@ -246,16 +261,14 @@ body:has(.history[data-horizontal]) .site-header.is-solid:not(.has-open-navigati
   order: 0;
 }
 
-.history[data-horizontal] .history-title {
-  font-size: clamp(2rem, min(3.55vw, 6svh), 3.2rem);
-}
-
 .history[data-horizontal] .history-note {
+  display: flex;
+  flex-direction: column;
   width: clamp(21rem, 31vw, 28rem);
 }
 
-.history[data-horizontal] .history-chapter:not(:first-child) .history-note {
-  align-self: end;
+.history[data-horizontal] .history-chapter:not(:first-child) .history-note .history-title {
+  margin-top: auto;
 }
 
 .history[data-horizontal] .history-photo {
@@ -295,14 +308,13 @@ body:has(.history[data-horizontal]) .site-header.is-solid:not(.has-open-navigati
   transform: translate3d(var(--pan, 0%), 0, 0);
 }
 
-@media (max-height: 42rem) {
+@media (max-height: 780px) {
   .history[data-horizontal] {
-    --lead-width: min(52vw, 39rem);
-    --bottom: 5svh;
+    --top: max(calc(var(--header-height) - .5rem), 12svh);
+    --bottom: clamp(1rem, calc(60svh - 21rem), 6.5rem);
   }
   .history[data-horizontal] .history-year-mask {
-    width: min(100%, 70svh);
-    font-size: min(69cqw, 48svh);
+    font-size: min(61cqw, 41svh, 17.5rem);
   }
   .history[data-horizontal] .history-body {
     margin-top: 1.25rem;

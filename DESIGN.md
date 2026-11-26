@@ -18,7 +18,9 @@ Use locally hosted fonts from `public/fonts/`. FK Grotesk Neue is the site’s d
 | H2 | FK Grotesk Neue Bold | 700 |
 | About Us timeline years | FK Grotesk Bold | 700 |
 | H3 | FK Grotesk Neue Medium | 500 |
+| About Us story titles | FK Grotesk Neue Medium, condensed uppercase with open tracking | 500 |
 | Body text and paragraphs | FK Grotesk Neue Regular | 400 |
+| About Us story paragraphs | FK Grotesk Neue Light | 300 |
 | Button text, including links styled as buttons | FK Grotesk Neue Light | 300 |
 | `p.prose.muted` | FK Grotesk Neue Light | 300 |
 | `p.eyebrow.muted` | FK Grotesk Neue Thin | 100 |
@@ -95,7 +97,9 @@ The Services overview at `/services/` lists all five services using the existing
 
 Contact sections omit the Get in Touch eyebrow. The homepage has no divider between partners and contact. On desktop align the introductory heading with the top of the Name/Email input borders; on mobile retain stacked reflow. The Contact page starts directly with this contact section and omits the separate page introduction and divider.
 
-The About Us page opens directly on the 2008–2026 company history. Lay it out as a continuous horizontal sequence on landscape screens from 64rem wide. Use a vertical reading order on narrow and portrait screens. On desktop, set each oversized year above its story and alternate text columns with inset and full-bleed photographs. On mobile, introduce the story before its oversized year. Use the site's black background, white type and existing event photography for the review.
+The About Us page opens directly on the 2008–2026 company history. Lay it out as a continuous horizontal sequence on landscape screens from 64rem wide. Use a vertical reading order on narrow and portrait screens. On desktop, set each year above its story and alternate text columns with inset and full-bleed photographs. Reduce the year size on shorter landscape screens. On mobile, introduce the story before the year. Set the years and titles in white and the lightweight body copy in soft grey on black. Use existing event photography for the review.
+
+The About header uses a bare envelope icon in the upper right linking to Contact. The timeline ends at the final photograph. Omit the footer, floating contact shortcut and inline contact links on this page.
 
 Stagger the year digits and headline lines upwards through masks. Fade in the body copy line by line. Reveal inset photographs from the lower edge or corner and let the image travel slightly inside its frame on the reading axis. Keep the timeline in a single expanded view. Reduced motion shows the complete text and images immediately.
 

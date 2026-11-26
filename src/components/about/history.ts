@@ -9,15 +9,28 @@ function splitPassages(passages: Passage[]) {
   const fragments = passages.map(({ element, text }) => {
     const node = element.firstChild!;
     const range = document.createRange();
-    const lines: string[] = [];
+    const lineStarts: number[] = [];
     let lastTop = -Infinity;
+    function recordLine(offset: number, top: number) {
+      if (Math.abs(top - lastTop) > 1) lineStarts.push(offset);
+      lastTop = top;
+    }
     for (const match of text.matchAll(/\S+/g)) {
       range.setStart(node, match.index);
       range.setEnd(node, match.index + match[0].length);
-      const top = range.getBoundingClientRect().top;
-      if (Math.abs(top - lastTop) > 1) lines.push(match[0]);
-      else lines[lines.length - 1] += ` ${match[0]}`;
-      lastTop = top;
+      const rects = range.getClientRects();
+      if (rects.length === 1) {
+        recordLine(match.index, rects[0].top);
+        continue;
+      }
+      // A hyphenated word can occupy two lines. Keep the browser's exact break.
+      let offset = match.index;
+      for (const character of match[0]) {
+        range.setStart(node, offset);
+        range.setEnd(node, offset + character.length);
+        recordLine(offset, range.getBoundingClientRect().top);
+        offset += character.length;
+      }
     }
 
     const original = document.createElement("span");
@@ -26,11 +39,11 @@ function splitPassages(passages: Passage[]) {
     const visual = document.createElement("span");
     visual.setAttribute("aria-hidden", "true");
     const title = element.dataset.reveal === "title";
-    lines.forEach((line, index) => {
+    lineStarts.forEach((start, index) => {
       const ink = document.createElement("span");
       ink.className = title ? "history-line history-title-line" : "history-line history-body-line";
       ink.style.setProperty("--order", String(index));
-      ink.textContent = line + (index < lines.length - 1 ? " " : "");
+      ink.textContent = text.slice(start, lineStarts[index + 1]);
       if (title) {
         const mask = document.createElement("span");
         mask.className = "history-line-mask";
@@ -154,8 +167,7 @@ export function mountHistory(viewport: HTMLElement) {
     if (step[event.key] && moveBy(step[event.key])) event.preventDefault();
   }
 
-  // On a landscape touch screen, horizontal swipes are native. A vertical
-  // swipe can also turn the strip; a gesture at its boundary reaches the footer.
+  // Horizontal swipes are native. A vertical swipe can also advance the strip.
   let touch: { x: number; y: number; previousY: number } | undefined;
   function onTouchStart(event: TouchEvent) {
     stopWheel();
@@ -220,8 +232,8 @@ export function mountHistory(viewport: HTMLElement) {
     horizontal = wide.matches;
     viewport.toggleAttribute("data-horizontal", horizontal);
     // Very short windows and enlarged text must still expose every line.
-    if (horizontal && Array.from(viewport.querySelectorAll<HTMLElement>(".history-lead"))
-      .some((lead) => lead.scrollHeight > lead.clientHeight + 1)) {
+    if (horizontal && Array.from(viewport.querySelectorAll<HTMLElement>(".history-lead, .history-note"))
+      .some((column) => column.scrollHeight > column.clientHeight + 1)) {
       horizontal = false;
       viewport.removeAttribute("data-horizontal");
     }
@@ -278,13 +290,18 @@ export function mountHistory(viewport: HTMLElement) {
     clearTimeout(fontDeadline);
     begin();
   });
-  let width = innerWidth;
+  let width = viewport.clientWidth;
   let height = innerHeight;
-  window.addEventListener("resize", () => {
-    if (width !== innerWidth || (wide.matches && height !== innerHeight) || wide.matches !== horizontal) queueLayout();
-    width = innerWidth;
+  function checkSize() {
+    const nextWidth = viewport.clientWidth;
+    if (width !== nextWidth || (wide.matches && height !== innerHeight)) queueLayout();
+    width = nextWidth;
     height = innerHeight;
-  });
+  }
+  // The reading width can change when a scrollbar appears without a window resize.
+  new ResizeObserver(checkSize).observe(viewport);
+  window.addEventListener("resize", checkSize);
+  wide.addEventListener("change", queueLayout);
   reduced.addEventListener("change", queueLayout);
   window.addEventListener("scroll", queuePhotos, { passive: true });
   viewport.addEventListener("scroll", queuePhotos, { passive: true });

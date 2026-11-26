@@ -1,4 +1,4 @@
-import { Minus, Plus } from "lucide-react";
+import { Mail, Minus, Plus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { Service } from "../../data/types";
 import { navigation } from "../../data/navigation";
@@ -9,11 +9,12 @@ import "./header.css";
 interface Props {
   services: Pick<Service, "slug" | "title" | "parent">[];
   home?: boolean;
+  contactIconOnly?: boolean;
 }
 
 const blankImage = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
-export default function Header({ services, home = false }: Props) {
+export default function Header({ services, home = false, contactIconOnly = false }: Props) {
   const { open, showArtwork, still, close, toggleMenu, reportArtwork,
     stillImage, decodeStill, selectCheckedInLook, replaceArtwork, finishReveal } = useNavigationPresentation();
   const [hidden, setHidden] = useState(false);
@@ -120,8 +121,12 @@ export default function Header({ services, home = false }: Props) {
             height="23"
           />
         </a>
-        <a className="button header-contact" href="/contact/">
-          Get in Touch
+        <a
+          className={contactIconOnly ? "header-mail" : "button header-contact"}
+          href="/contact/"
+          aria-label={contactIconOnly ? "Contact Duka Alfa Audio" : undefined}
+        >
+          {contactIconOnly ? <Mail size={22} strokeWidth={1.5} aria-hidden="true" /> : "Get in Touch"}
         </a>
       </div>
       <div

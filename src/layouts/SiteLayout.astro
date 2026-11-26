@@ -7,11 +7,13 @@ interface Props {
   title?: string;
   description?: string;
   home?: boolean;
+  historyPage?: boolean;
 }
 const {
   title = "Duka Alfa Audio",
   description = "Professional sound and lighting. Event production, installations, equipment sales, rental and bespoke home audio.",
   home = false,
+  historyPage = false,
 } = Astro.props;
 const menuServices = services
   .filter((service) => !service.parent)
@@ -35,8 +37,8 @@ const menuServices = services
   </head>
   <body>
     <a href="#main" class="skip">Skip to content</a>
-    <Header services={menuServices} home={home} client:load />
+    <Header services={menuServices} home={home} contactIconOnly={historyPage} client:load />
     <main id="main" tabindex="-1"><slot /></main>
-    <Footer />
+    {!historyPage && <Footer />}
   </body>
 </html>

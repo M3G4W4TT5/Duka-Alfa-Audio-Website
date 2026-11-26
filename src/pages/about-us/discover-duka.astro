@@ -2,12 +2,12 @@
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import HistoryCopy from "../../components/about/HistoryCopy.astro";
 import Photo from "../../components/media/Photo.astro";
-import Button from "../../components/ui/Button.astro";
 import { history } from "../../lib/content";
 import "../../styles/about-page.css";
 ---
 
 <SiteLayout
+  historyPage
   title="About Us"
   description="From a few used speakers in 2008 to eighteen years of live sound. Discover the people, places and nights in Duka Alfa Audio’s history."
 >
@@ -29,7 +29,6 @@ import "../../styles/about-page.css";
             </h2>
             <div class="history-copy">
               <HistoryCopy title={chapter.title} text={chapter.text} />
-              {index === history.length - 1 && <Button href="/contact/" label="Get in Touch" />}
             </div>
           </div>
           {chapter.note && (

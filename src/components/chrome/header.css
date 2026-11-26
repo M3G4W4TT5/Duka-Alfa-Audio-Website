@@ -47,6 +47,17 @@
   justify-self: end;
   white-space: nowrap;
 }
+.header-mail {
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  transition: color var(--motion-fast);
+}
+.header-mail:hover {
+  color: var(--color-muted);
+}
 .navigation-overlay {
   position: fixed;
   inset: 0;
