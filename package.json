@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^7.0.0",
-    "@duka/chladni": "file:vendor/duka-chladni-1.0.2.tgz",
+    "@duka/chladni": "file:vendor/duka-chladni-1.0.3.tgz",
     "@sanity/client": "^8.7.0",
     "astro": "^7.3.5",
     "lucide-react": "^1.51.0",
