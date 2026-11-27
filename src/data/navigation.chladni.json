@@ -78,7 +78,15 @@
     "minHz": 100,
     "maxHz": 182,
     "sandSpeed": 1.45,
+    "shakerStrength": 1,
+    "strayJumpRate": 1,
+    "strayBounceHeight": 3.2,
+    "straySideKick": 0.4,
     "grainCount": 65536,
+    "grainSmoothing": false,
+    "highlightVariation": 0.8,
+    "ridgeShading": 0.8,
+    "emitterRadius": 0.65,
     "gradient": [
       {
         "id": 0,
